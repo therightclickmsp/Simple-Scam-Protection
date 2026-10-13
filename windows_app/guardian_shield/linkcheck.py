@@ -200,14 +200,19 @@ def check(text):
     for u in urls:
         score = max(score, u["score"])
         reasons += [f"{u['host']}: {r}" for r in u["reasons"]]
-    text_score, low = 0, text.lower()
-    for pattern, reason, pts in TEXT_RULES:
+    text_score, low, hits = 0, text.lower(), set()
+    for i, (pattern, reason, pts) in enumerate(TEXT_RULES):
         if re.search(pattern, low):
+            hits.add(i)
             text_score += pts
             reasons.append(reason)
     if TOLL_FREE.search(text):
+        hits.add("phone")
         text_score += 15
         reasons.append("Contains a toll-free phone number. Real virus warnings never show a number to call.")
+    if 0 in hits and hits & {2, "phone"}:
+        text_score += 20
+        reasons.append("This is the classic fake virus warning used by tech-support scammers.")
     score += min(text_score, 60)
     verdict = "dangerous" if score >= 60 else "suspicious" if score >= 25 else "safe"
     if not reasons:

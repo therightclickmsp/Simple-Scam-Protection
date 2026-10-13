@@ -1,3 +1,4 @@
+import asyncio
 import io
 import logging
 import os
@@ -99,7 +100,8 @@ def build_zip() -> bytes:
 async def download():
     await bump("downloads")
     name = f"GuardianShield-{__version__}-windows.zip"
-    return StreamingResponse(io.BytesIO(build_zip()), media_type="application/zip",
+    data = await asyncio.to_thread(build_zip)
+    return StreamingResponse(io.BytesIO(data), media_type="application/zip",
                              headers={"Content-Disposition": f'attachment; filename="{name}"'})
 
 

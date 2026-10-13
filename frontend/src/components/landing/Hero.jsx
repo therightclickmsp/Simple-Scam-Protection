@@ -36,7 +36,7 @@ const AppMock = () => (
             <span className="flex items-center gap-3 text-sm font-semibold text-slate-800">
               <Icon className="h-4 w-4 text-emerald-600" /> {label}
             </span>
-            <span className="h-6 w-11 rounded-full bg-emerald-600 p-0.5"><span className="ml-auto block h-5 w-5 translate-x-5 rounded-full bg-white" /></span>
+            <span className="h-6 w-11 rounded-full bg-emerald-600 p-0.5"><span className="block h-5 w-5 translate-x-5 rounded-full bg-white" /></span>
           </div>
         ))}
         <div className="rounded-xl border border-red-200 bg-red-50 px-4 py-3 text-sm">

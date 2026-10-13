@@ -13,7 +13,7 @@ export default function ToolsStrip() {
 
   const loop = [...tools, ...tools];
   return (
-    <section className="border-y border-slate-200 bg-slate-900 py-5" data-testid="tools-strip">
+    <section className="border-y border-slate-200 bg-slate-900 py-5 overflow-hidden" data-testid="tools-strip">
       <div className="mx-auto flex max-w-7xl items-center gap-6 overflow-hidden px-4 sm:px-6 lg:px-8">
         <p className="shrink-0 text-xs font-semibold uppercase tracking-widest text-emerald-400">Detects & blocks</p>
         <div className="relative overflow-hidden [mask-image:linear-gradient(90deg,transparent,#000_8%,#000_92%,transparent)]">
