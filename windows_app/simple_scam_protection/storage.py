@@ -11,7 +11,7 @@ DEFAULTS = {
     "popup_block": True,
     "site_block": False,
     "autostart": True,
-    "allowlist": [],
+    "allowlist": ["quickassist"],
     "first_run_done": False,
     "password_hash": None,
 }
@@ -59,6 +59,11 @@ class Store:
         defaults = {k: v for k, v in self.policy.get("defaults", {}).items() if k in POLICY_DEFAULT_KEYS}
         self.settings = {**DEFAULTS, **defaults, **read_json(self.settings_file, {})}
         self.log = read_json(self.log_file, [])
+        if not self.settings.get("quickassist_default_trusted"):
+            if "quickassist" not in self.settings["allowlist"]:
+                self.settings["allowlist"] = self.settings["allowlist"] + ["quickassist"]
+            self.settings["quickassist_default_trusted"] = True
+            self.save_settings()
 
     def save_settings(self):
         with self._lock:

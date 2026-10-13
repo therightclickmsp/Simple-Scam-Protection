@@ -89,3 +89,14 @@ def test_store_log(tmp_path):
     s = Store(tmp_path)
     s.add_event("blocked", "Blocked AnyDesk")
     assert Store(tmp_path).log[0]["title"] == "Blocked AnyDesk"
+
+
+def test_quickassist_trusted_by_default_and_for_existing_users(tmp_path):
+    assert Store(tmp_path / "new").is_trusted("quickassist")
+    old = tmp_path / "old"
+    old.mkdir()
+    (old / "settings.json").write_text('{"allowlist": ["anydesk"]}')
+    s = Store(old)
+    assert s.is_trusted("quickassist") and s.is_trusted("anydesk")
+    s.set("allowlist", ["anydesk"])  # user later un-trusts it: must stay un-trusted
+    assert not Store(old).is_trusted("quickassist")

@@ -2,7 +2,9 @@
 import queue
 import sys
 import threading
+import time
 import tkinter as tk
+import webbrowser
 from tkinter import messagebox, ttk
 
 from . import APP_NAME, __version__, autostart, hosts, scanner
@@ -18,6 +20,8 @@ GREEN, GREEN_L, RED, RED_L, AMBER, AMBER_L, BLUE = ("#059669", "#D1FAE5", "#DC26
                                                     "#D97706", "#FEF3C7", "#2563EB")
 FONT = "Segoe UI"
 TRUST_PHRASE = "I TRUST THIS TOOL"
+COFFEE_URL = "https://buymeacoffee.com/trcmsp"
+WARNING_COOLDOWN = 20
 
 
 def font(size=13, weight="normal"):
@@ -42,6 +46,8 @@ class ScamProtectionApp:
         self.monitor.start()
         self.popups = PopupWatcher(self.store, lambda d: self.events.put(("monitor", d)))
         self.popups.start()
+        self.warning = None
+        self.recent = {}
         self.tray = None
         self._start_tray()
         if self.store.settings["autostart"]:
@@ -77,7 +83,10 @@ class ScamProtectionApp:
             self.nav[key] = b
             self.pages[key] = cls(self.body, self)
         tk.Label(side, text="Free • Your data stays\non this PC", bg=INK, fg="#64748B", font=font(10),
-                 justify="left").pack(side="bottom", anchor="w", padx=24, pady=20)
+                 justify="left").pack(side="bottom", anchor="w", padx=24, pady=(6, 20))
+        tk.Button(side, text="☕  Buy me a coffee", command=lambda: webbrowser.open(COFFEE_URL), bg="#FFDD00",
+                  fg=INK, activebackground="#FACC15", activeforeground=INK, font=font(11, "bold"), relief="flat",
+                  bd=0, padx=14, pady=8, cursor="hand2").pack(side="bottom", anchor="w", padx=24)
         self.show_page("status")
 
     def show_page(self, key):
@@ -158,11 +167,29 @@ class ScamProtectionApp:
             pass
         self.root.after(300, self._poll)
 
+    def is_repeat(self, key):
+        """One warning per thing per WARNING_COOLDOWN seconds (a tool can start many processes at once)."""
+        now = time.time()
+        if now - self.recent.get(key, 0) < WARNING_COOLDOWN:
+            return True
+        self.recent[key] = now
+        return False
+
+    def warn(self, title, text, color=RED):
+        """Show one full-screen warning at a time; a new one replaces the text of the open one."""
+        if self.warning and self.warning.winfo_exists():
+            self.warning.update_message(title, text, color)
+        else:
+            self.warning = WarningScreen(self.root, title, text, color)
+
     def handle_monitor(self, d):
+        key = d["type"] + ":" + (d.get("tool") or d.get("command") or {}).get("id", d.get("title", ""))
+        if self.is_repeat(key):
+            return
         if d["type"] == "remote_block":
             t = d["tool"]
             self.store.add_event("blocked", f"Blocked {t['name']}", "A remote-access tool started and was closed.")
-            WarningScreen(self.root, "Someone may be trying to control your computer",
+            self.warn("Someone may be trying to control your computer",
                           f"{t['name']} just tried to start, and Simple Scam Protection closed it.\n\n"
                           "If a caller, pop-up or message asked you to install or open it, it is a SCAM.\n"
                           "Hang up the phone now. Microsoft, Apple, your bank and the government never call "
@@ -175,14 +202,14 @@ class ScamProtectionApp:
         elif d["type"] == "command":
             c = d["command"]
             self.store.add_event("warned", f"{c['name']} opened", c["message"])
-            WarningScreen(self.root, "If someone on the phone asked you to open this, it's a scam",
+            self.warn("If someone on the phone asked you to open this, it's a scam",
                           f"{c['name']} was just opened.\n\n{c['message']}\n\n"
                           "Hang up and do not give anyone money, card numbers or access to your computer.",
                           color=AMBER)
         elif d["type"] == "popup":
             closed = "the scam tab was closed" if d["action"] == "tab" else "your browser was closed"
             self.store.add_event("blocked", "Closed fake virus pop-up", f"{d['browser']}: {d['title'][:120]}")
-            WarningScreen(self.root, "That was a FAKE virus warning",
+            self.warn("That was a FAKE virus warning",
                           f"A web page pretending to be Microsoft or a virus alert appeared, and {closed}.\n\n"
                           f"\"{d['title'][:90]}\"\n\nYour computer is NOT locked or infected. Do NOT call the number "
                           "it showed. When you reopen your browser, do NOT click 'Restore pages'.")
@@ -214,17 +241,35 @@ class WarningScreen(tk.Toplevel):
             self.geometry("1000x700")
         wrap = tk.Frame(self, bg=color)
         wrap.place(relx=0.5, rely=0.5, anchor="center")
-        tk.Label(wrap, text="⚠  STOP", bg=color, fg="white", font=font(28, "bold")).pack(pady=(0, 10))
-        tk.Label(wrap, text=title, bg=color, fg="white", font=font(30, "bold"), wraplength=1000).pack(pady=10)
-        tk.Label(wrap, text=text, bg=color, fg="white", font=font(17), wraplength=900, justify="center").pack(pady=20)
+        self.wrap = wrap
+        self.stop_lbl = tk.Label(wrap, text="⚠  STOP", bg=color, fg="white", font=font(28, "bold"))
+        self.stop_lbl.pack(pady=(0, 10))
+        self.title_lbl = tk.Label(wrap, text=title, bg=color, fg="white", font=font(30, "bold"), wraplength=1000)
+        self.title_lbl.pack(pady=10)
+        self.text_lbl = tk.Label(wrap, text=text, bg=color, fg="white", font=font(17), wraplength=900, justify="center")
+        self.text_lbl.pack(pady=20)
         self.btn = tk.Button(wrap, text="Please read the message (3)", font=font(16, "bold"), state="disabled",
-                             bg="white", fg=color, relief="flat", padx=30, pady=12, command=self.destroy)
+                             bg="white", fg=color, relief="flat", padx=30, pady=12, command=self.close)
         self.btn.pack(pady=20)
+        self.ready = False
         self._count(3)
         self.bell()
 
+    def update_message(self, title, text, color):
+        for w in (self, self.wrap, self.stop_lbl, self.title_lbl, self.text_lbl):
+            w.configure(bg=color)
+        self.title_lbl.configure(text=title)
+        self.text_lbl.configure(text=text)
+        self.btn.configure(fg=color)
+        self.lift()
+
+    def close(self):
+        if self.ready:
+            self.destroy()
+
     def _count(self, n):
         if n <= 0:
+            self.ready = True
             self.btn.configure(text="I understand", state="normal", cursor="hand2")
             return
         self.btn.configure(text=f"Please read the message ({n})")
@@ -252,6 +297,32 @@ class Page(tk.Frame):
     def card(self, parent=None, **kw):
         f = tk.Frame(parent or self, bg=CARD, highlightbackground="#E2E8F0", highlightthickness=1, **kw)
         return f
+
+
+class ScrollArea:
+    """A vertically scrollable area (scrollbar + mouse wheel) inside a parent frame."""
+
+    def __init__(self, parent):
+        self.canvas = tk.Canvas(parent, bg=CARD, highlightthickness=0)
+        bar = ttk.Scrollbar(parent, orient="vertical", command=self.canvas.yview)
+        self.canvas.configure(yscrollcommand=bar.set)
+        bar.pack(side="right", fill="y")
+        self.canvas.pack(side="left", fill="both", expand=True)
+        self.inner = tk.Frame(self.canvas, bg=CARD)
+        win = self.canvas.create_window((0, 0), window=self.inner, anchor="nw")
+        self.inner.bind("<Configure>", lambda _: self.canvas.configure(scrollregion=self.canvas.bbox("all")))
+        self.canvas.bind("<Configure>", lambda e: self.canvas.itemconfigure(win, width=e.width))
+        self.canvas.bind("<Enter>", lambda _: self.canvas.bind_all("<MouseWheel>", self._wheel))
+        self.canvas.bind("<Leave>", lambda _: self.canvas.unbind_all("<MouseWheel>"))
+
+    def _wheel(self, event):
+        if self.inner.winfo_height() > self.canvas.winfo_height():
+            self.canvas.yview_scroll(int(-event.delta / 120) or (-1 if event.delta > 0 else 1), "units")
+
+    def clear(self):
+        for w in self.inner.winfo_children():
+            w.destroy()
+        self.canvas.yview_moveto(0)
 
 
 def big_button(parent, text, cmd, color=GREEN):
@@ -285,8 +356,9 @@ class StatusPage(Page):
         top.pack(fill="x", pady=(6, 8))
         tk.Label(top, text="Remote-access tools on this PC", bg=BG, fg=INK, font=font(16, "bold")).pack(side="left")
         big_button(top, "Scan now", self.scan, BLUE).pack(side="right")
-        self.results = self.card()
-        self.results.pack(fill="both", expand=True)
+        box = self.card()
+        box.pack(fill="both", expand=True)
+        self.results = ScrollArea(box)
         self.findings = []
 
     def refresh(self):
@@ -325,9 +397,8 @@ class StatusPage(Page):
         self.refresh()
 
     def scan(self):
-        for w in self.results.winfo_children():
-            w.destroy()
-        tk.Label(self.results, text="Scanning…", bg=CARD, font=font(13), fg=MUTED).pack(padx=20, pady=20, anchor="w")
+        self.results.clear()
+        tk.Label(self.results.inner, text="Scanning…", bg=CARD, font=font(13), fg=MUTED).pack(padx=20, pady=20, anchor="w")
 
         def work():
             found = [f for f in scanner.full_scan() if not self.app.store.is_trusted(f["tool_id"])]
@@ -336,17 +407,16 @@ class StatusPage(Page):
 
     def show_results(self, found):
         self.findings = found
-        for w in self.results.winfo_children():
-            w.destroy()
+        self.results.clear()
         self.app.store.add_event("scan", "Scan finished", f"{len(found)} remote-access item(s) found.")
         if not found:
-            tk.Label(self.results, text="✔  No remote-access tools found. Nice!", bg=CARD, fg=GREEN,
+            tk.Label(self.results.inner, text="✔  No remote-access tools found. Nice!", bg=CARD, fg=GREEN,
                      font=font(14, "bold")).pack(padx=20, pady=24, anchor="w")
             return
-        tk.Label(self.results, text=f"Found {len(found)} item(s). If you did not install these yourself, remove them.",
+        tk.Label(self.results.inner, text=f"Found {len(found)} item(s). If you did not install these yourself, remove them.",
                  bg=CARD, fg=RED, font=font(13, "bold")).pack(padx=20, pady=(16, 8), anchor="w")
         for f in found:
-            r = tk.Frame(self.results, bg=CARD)
+            r = tk.Frame(self.results.inner, bg=CARD)
             r.pack(fill="x", padx=20, pady=4)
             tk.Label(r, text=f"{f['name']}  •  {f['kind']}", bg=CARD, fg=INK, font=font(12, "bold")).pack(side="left")
             tk.Label(r, text=f.get("path", "")[:60], bg=CARD, fg=MUTED, font=font(10)).pack(side="left", padx=10)

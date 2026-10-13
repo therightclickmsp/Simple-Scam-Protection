@@ -1,0 +1,381 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Simple Scam Protection - Free protection from tech-support scams for Windows</title>
+  <meta name="description" content="Free Windows app that stops tech-support scammers: blocks AnyDesk, TeamViewer and other remote-access tools, closes fake virus pop-ups, warns about scammer tricks and checks links. No account, nothing leaves your PC." />
+  <link rel="canonical" href="https://www.simplescamprotection.com/" />
+  <meta name="theme-color" content="#059669" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Simple Scam Protection" />
+  <meta property="og:title" content="Simple Scam Protection - stop tech-support scammers before they take control" />
+  <meta property="og:description" content="Free Windows app that blocks remote-access tools, closes fake virus pop-ups and checks links for scam signs." />
+  <meta property="og:url" content="https://www.simplescamprotection.com/" />
+  <meta name="twitter:card" content="summary" />
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,700&family=JetBrains+Mono:wght@400;600&family=Plus+Jakarta+Sans:wght@500;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="assets/site.css" />
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"SoftwareApplication","name":"Simple Scam Protection","operatingSystem":"Windows 10, Windows 11","applicationCategory":"SecurityApplication","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"url":"https://www.simplescamprotection.com/"}
+  </script>
+</head>
+<body class="min-h-screen bg-[#F8FAFC] font-body text-slate-900">
+  <!-- Icons (Lucide, ISC licence) -->
+  <svg xmlns="http://www.w3.org/2000/svg" style="display:none">
+    <symbol id="i-shield-check" viewBox="0 0 24 24"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/><path d="m9 12 2 2 4-4"/></symbol>
+    <symbol id="i-shield-alert" viewBox="0 0 24 24"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/><path d="M12 8v4"/><path d="M12 16h.01"/></symbol>
+    <symbol id="i-shield-x" viewBox="0 0 24 24"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/><path d="m14.5 9.5-5 5"/><path d="m9.5 9.5 5 5"/></symbol>
+    <symbol id="i-download" viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" x2="12" y1="15" y2="3"/></symbol>
+    <symbol id="i-search" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></symbol>
+    <symbol id="i-check" viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></symbol>
+    <symbol id="i-lock" viewBox="0 0 24 24"><rect width="18" height="11" x="3" y="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></symbol>
+    <symbol id="i-monitor" viewBox="0 0 24 24"><rect width="20" height="14" x="2" y="3" rx="2"/><line x1="8" x2="16" y1="21" y2="21"/><line x1="12" x2="12" y1="17" y2="21"/></symbol>
+    <symbol id="i-monitor-x" viewBox="0 0 24 24"><path d="m14.5 12.5-5-5"/><path d="m9.5 12.5 5-5"/><rect width="20" height="14" x="2" y="3" rx="2"/><path d="M12 17v4"/><path d="M8 21h8"/></symbol>
+    <symbol id="i-terminal" viewBox="0 0 24 24"><polyline points="4 17 10 11 4 5"/><line x1="12" x2="20" y1="19" y2="19"/></symbol>
+    <symbol id="i-app-window" viewBox="0 0 24 24"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M10 4v4"/><path d="M2 8h20"/><path d="M6 4v4"/></symbol>
+    <symbol id="i-globe" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"/><path d="M2 12h20"/></symbol>
+    <symbol id="i-link" viewBox="0 0 24 24"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></symbol>
+    <symbol id="i-scroll" viewBox="0 0 24 24"><path d="M15 12h-5"/><path d="M15 8h-5"/><path d="M19 17V5a2 2 0 0 0-2-2H4"/><path d="M8 21h12a2 2 0 0 0 2-2v-1a1 1 0 0 0-1-1H11a1 1 0 0 0-1 1v1a2 2 0 1 1-4 0V5a2 2 0 1 0-4 0v2a1 1 0 0 0 1 1h3"/></symbol>
+    <symbol id="i-key" viewBox="0 0 24 24"><path d="M2.586 17.414A2 2 0 0 0 2 18.828V21a1 1 0 0 0 1 1h3a1 1 0 0 0 1-1v-1a1 1 0 0 1 1-1h1a1 1 0 0 0 1-1v-1a1 1 0 0 1 1-1h.172a2 2 0 0 0 1.414-.586l.814-.814a6.5 6.5 0 1 0-4-4z"/><circle cx="16.5" cy="7.5" r=".5"/></symbol>
+    <symbol id="i-lock-keyhole" viewBox="0 0 24 24"><circle cx="12" cy="16" r="1"/><rect x="3" y="10" width="18" height="12" rx="2"/><path d="M7 10V7a5 5 0 0 1 10 0v3"/></symbol>
+    <symbol id="i-alert" viewBox="0 0 24 24"><path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3"/><path d="M12 9v4"/><path d="M12 17h.01"/></symbol>
+    <symbol id="i-copy" viewBox="0 0 24 24"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></symbol>
+    <symbol id="i-info" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/></symbol>
+    <symbol id="i-coffee" viewBox="0 0 24 24"><path d="M10 2v2"/><path d="M14 2v2"/><path d="M16 8a1 1 0 0 1 1 1v8a4 4 0 0 1-4 4H7a4 4 0 0 1-4-4V9a1 1 0 0 1 1-1h14a4 4 0 1 1 0 8h-1"/><path d="M6 2v2"/></symbol>
+    <symbol id="i-chevron" viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"/></symbol>
+    <symbol id="i-menu" viewBox="0 0 24 24"><line x1="4" x2="20" y1="12" y2="12"/><line x1="4" x2="20" y1="6" y2="6"/><line x1="4" x2="20" y1="18" y2="18"/></symbol>
+    <symbol id="i-x" viewBox="0 0 24 24"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></symbol>
+  </svg>
+
+  <!-- Header -->
+  <header class="sticky top-0 z-50 border-b border-slate-200 bg-white/85 backdrop-blur-xl">
+    <div class="mx-auto flex h-[72px] max-w-7xl items-center justify-between gap-3 px-4 sm:px-6 lg:px-8">
+      <a href="#top" data-testid="brand-logo" class="flex min-w-0 items-center gap-2.5">
+        <span class="grid h-9 w-9 shrink-0 place-items-center rounded-xl bg-emerald-600 text-white sm:h-10 sm:w-10"><svg class="ico h-6 w-6" style="stroke-width:2.4"><use href="#i-shield-check"/></svg></span>
+        <span class="font-display truncate whitespace-nowrap text-base font-extrabold text-slate-900 sm:text-xl">Simple Scam Protection</span>
+      </a>
+      <nav class="hidden items-center gap-7 lg:flex" aria-label="Main">
+        <a href="#checker" data-testid="nav-checker-link" class="nav-link">Check a link</a>
+        <a href="#features" data-testid="nav-features-link" class="nav-link">Features</a>
+        <a href="#preview" data-testid="nav-preview-link" class="nav-link">See a warning</a>
+        <a href="#install" data-testid="nav-install-link" class="nav-link">Install</a>
+        <a href="#faq" data-testid="nav-faq-link" class="nav-link">FAQ</a>
+        <a href="https://buymeacoffee.com/trcmsp" target="_blank" rel="noopener" data-testid="nav-coffee-link" class="coffee-link"><svg class="ico h-4 w-4"><use href="#i-coffee"/></svg> Buy me a coffee</a>
+      </nav>
+      <div class="flex shrink-0 items-center gap-2">
+        <a href="https://github.com/trcmsp/simple-scam-protection/releases/latest/download/SimpleScamProtectionSetup.exe" data-testid="header-download-button" class="hidden shrink-0 sm:inline-flex items-center gap-2 whitespace-nowrap rounded-full bg-slate-900 px-4 py-2.5 text-sm font-bold text-white transition-colors hover:bg-emerald-700 sm:px-5">
+          <svg class="ico h-4 w-4"><use href="#i-download"/></svg><span>Download free</span>
+        </a>
+        <button type="button" data-testid="mobile-menu-button" aria-label="Open menu" aria-expanded="false" class="grid h-10 w-10 place-items-center rounded-full border border-slate-200 text-slate-700 lg:hidden" id="menu-btn">
+          <svg class="ico h-5 w-5"><use href="#i-menu"/></svg>
+        </button>
+      </div>
+    </div>
+    <nav id="mobile-menu" data-testid="mobile-menu" class="hidden border-t border-slate-200 bg-white px-4 pb-4 pt-2 lg:hidden" aria-label="Mobile">
+      <a href="#checker" class="mobile-link">Check a link</a>
+      <a href="#features" class="mobile-link">Features</a>
+      <a href="#preview" class="mobile-link">See a warning</a>
+      <a href="#install" class="mobile-link">Install</a>
+      <a href="#faq" class="mobile-link">FAQ</a>
+      <a href="https://github.com/trcmsp/simple-scam-protection/releases/latest/download/SimpleScamProtectionSetup.exe" data-testid="mobile-download-link" class="mt-3 flex items-center justify-center gap-2 rounded-full bg-slate-900 py-3 text-base font-bold text-white"><svg class="ico h-5 w-5"><use href="#i-download"/></svg> Download free for Windows</a>
+      <a href="https://buymeacoffee.com/trcmsp" target="_blank" rel="noopener" data-testid="mobile-coffee-link" class="coffee-link mt-3 flex justify-center py-3 text-base"><svg class="ico h-5 w-5"><use href="#i-coffee"/></svg> Buy me a coffee</a>
+    </nav>
+  </header>
+
+  <main>
+    <!-- Hero -->
+    <section id="top" class="grain relative overflow-hidden">
+      <div class="mx-auto grid max-w-7xl items-center gap-14 px-4 py-16 sm:px-6 md:py-24 lg:grid-cols-[1.05fr_1fr] lg:px-8">
+        <div>
+          <p class="rise inline-flex items-center gap-2 rounded-full border border-emerald-200 bg-emerald-50 px-4 py-1.5 text-sm font-semibold text-emerald-800">
+            <svg class="ico h-4 w-4"><use href="#i-lock"/></svg> Free anti-scam protection for Windows 10 &amp; 11
+          </p>
+          <h1 class="rise d1 font-display mt-6 text-4xl font-extrabold leading-[1.05] text-slate-900 sm:text-5xl lg:text-6xl">
+            Stop tech-support scammers <span class="text-emerald-700">before they take control.</span>
+          </h1>
+          <p class="rise d2 mt-6 max-w-xl text-lg leading-relaxed text-slate-600 sm:text-xl">
+            Simple Scam Protection quietly sits in your taskbar. It closes remote-control apps like AnyDesk and TeamViewer
+            the moment they start, closes fake "your PC is locked" pop-ups, warns you when a "technician" opens
+            scary-looking Windows tools, and checks links for scam signs.
+          </p>
+          <div class="rise d3 mt-9 flex flex-col gap-3 sm:flex-row">
+            <a href="https://github.com/trcmsp/simple-scam-protection/releases/latest/download/SimpleScamProtectionSetup.exe" data-testid="download-hero-button" class="inline-flex items-center justify-center gap-2.5 rounded-2xl bg-emerald-600 px-7 py-4 text-lg font-bold text-white shadow-lg shadow-emerald-600/25 transition-[background-color,transform] hover:-translate-y-0.5 hover:bg-emerald-700">
+              <svg class="ico h-5 w-5"><use href="#i-download"/></svg> Download free for Windows
+            </a>
+            <a href="#checker" data-testid="hero-test-link-button" class="inline-flex items-center justify-center gap-2.5 rounded-2xl border-2 border-slate-300 bg-white px-7 py-4 text-lg font-bold text-slate-800 transition-colors hover:border-slate-900">
+              <svg class="ico h-5 w-5"><use href="#i-search"/></svg> Test a link online
+            </a>
+          </div>
+          <p class="rise d4 mt-6 text-sm font-medium text-slate-500">100% free · No account · Nothing leaves your PC · Works alongside Windows Defender</p>
+        </div>
+
+        <div data-testid="hero-app-mock" class="rise d3 relative overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-[0_30px_80px_-30px_rgba(15,23,42,0.35)]">
+          <div class="flex items-center gap-2 border-b border-slate-100 bg-slate-50 px-4 py-3">
+            <span class="h-3 w-3 rounded-full bg-slate-300"></span><span class="h-3 w-3 rounded-full bg-slate-300"></span><span class="h-3 w-3 rounded-full bg-slate-300"></span>
+            <span class="ml-3 text-xs font-semibold text-slate-500">Simple Scam Protection <span data-version>1.3</span></span>
+          </div>
+          <div class="grid grid-cols-[120px_1fr] sm:grid-cols-[150px_1fr]">
+            <div class="flex flex-col bg-slate-900 p-4 text-sm">
+              <div class="rounded-lg bg-slate-800 px-3 py-2 text-white">Status</div>
+              <div class="rounded-lg px-3 py-2 text-slate-400">Check a Link</div>
+              <div class="rounded-lg px-3 py-2 text-slate-400">Activity Log</div>
+              <div class="rounded-lg px-3 py-2 text-slate-400">Settings</div>
+              <div class="mt-auto rounded-md bg-[#FFDD00] px-2 py-1.5 text-[11px] font-bold text-slate-900">Buy me a coffee</div>
+            </div>
+            <div class="min-w-0 space-y-4 p-5">
+              <div class="rounded-xl bg-emerald-50 p-5">
+                <div class="flex items-center gap-3">
+                  <span class="pulse-ring grid h-9 w-9 shrink-0 place-items-center rounded-full bg-emerald-600 text-white"><svg class="ico h-5 w-5" style="stroke-width:3"><use href="#i-check"/></svg></span>
+                  <p class="font-display text-xl font-extrabold text-emerald-700 sm:text-2xl">You are Protected</p>
+                </div>
+                <p class="mt-2 text-sm text-slate-600">Watching for remote-access tools and scammer tricks.</p>
+              </div>
+              <div class="mock-row"><span class="mock-label"><svg class="ico h-4 w-4 text-emerald-600"><use href="#i-monitor"/></svg> Block remote-access tools</span><span class="mock-toggle"><span></span></span></div>
+              <div class="mock-row"><span class="mock-label"><svg class="ico h-4 w-4 text-emerald-600"><use href="#i-terminal"/></svg> Warn about scammer tricks</span><span class="mock-toggle"><span></span></span></div>
+              <div class="mock-row"><span class="mock-label"><svg class="ico h-4 w-4 text-emerald-600"><use href="#i-app-window"/></svg> Close fake virus pop-ups</span><span class="mock-toggle"><span></span></span></div>
+              <div class="mock-row"><span class="mock-label"><svg class="ico h-4 w-4 text-emerald-600"><use href="#i-globe"/></svg> Block scam websites</span><span class="mock-toggle"><span></span></span></div>
+              <div class="rounded-xl border border-red-200 bg-red-50 px-4 py-3 text-sm"><span class="font-bold text-red-700">Blocked AnyDesk</span><span class="text-slate-600"> · closed 2 seconds after launch</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Tools strip -->
+    <section class="overflow-hidden border-y border-slate-200 bg-slate-900 py-5" data-testid="tools-strip">
+      <div class="mx-auto flex max-w-7xl items-center gap-6 overflow-hidden px-4 sm:px-6 lg:px-8">
+        <p class="shrink-0 text-xs font-semibold uppercase tracking-widest text-emerald-400">Detects &amp; blocks</p>
+        <div class="relative overflow-hidden [mask-image:linear-gradient(90deg,transparent,#000_8%,#000_92%,transparent)]">
+          <div class="marquee flex w-max gap-10" id="tools-marquee"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Link checker -->
+    <section id="checker" class="bg-white py-16 md:py-24">
+      <div class="mx-auto grid max-w-7xl gap-12 px-4 sm:px-6 lg:grid-cols-[0.8fr_1.2fr] lg:px-8">
+        <div>
+          <p class="eyebrow text-blue-700">Try it now</p>
+          <h2 class="section-title">Is this link or message a scam?</h2>
+          <p class="mt-4 text-base leading-relaxed text-slate-600 md:text-lg">
+            Paste a suspicious text, email or web address. You'll get a plain-English answer in a second. The check runs
+            right here in your browser - nothing you paste is sent anywhere. The same checker is built into the Windows app.
+          </p>
+          <p class="mt-6 text-sm font-semibold text-slate-500">Try an example:</p>
+          <div class="mt-3 flex flex-wrap gap-2" id="presets">
+            <button type="button" class="preset" data-testid="link-checker-preset-0" data-text="WARNING! Your computer is infected with a Trojan virus. Do not shut down your PC. Call Microsoft Support immediately at 1-844-555-0199 or visit support-microsoft-alert-fix.cc">Fake virus pop-up</button>
+            <button type="button" class="preset" data-testid="link-checker-preset-1" data-text="https://paypa1-secure-login.xyz/verify-account">Lookalike PayPal</button>
+            <button type="button" class="preset" data-testid="link-checker-preset-2" data-text="Your Norton subscription was renewed for $399.99. To get a refund call us today and install AnyDesk so our technician can process it.">Refund scam</button>
+            <button type="button" class="preset" data-testid="link-checker-preset-3" data-text="https://www.amazon.com/your-orders">Real Amazon link</button>
+          </div>
+        </div>
+        <div class="min-w-0 space-y-6">
+          <form id="checker-form" class="rounded-2xl border border-slate-200 bg-slate-50 p-4 focus-within:border-blue-500">
+            <label for="checker-input" class="sr-only">Link or message to check</label>
+            <textarea id="checker-input" data-testid="link-checker-input" rows="5" class="min-h-[150px] w-full resize-none border-0 bg-transparent p-2 text-lg outline-none placeholder:text-slate-400" placeholder="e.g. 'Your PC has 5 viruses! Call Microsoft at 1-800-555-0199' or http://paypa1-login.xyz"></textarea>
+            <div class="flex flex-wrap items-center justify-between gap-3 border-t border-slate-200 pt-4">
+              <span class="text-sm text-slate-500">Rule-based · no AI · nothing is sent or stored</span>
+              <button type="submit" data-testid="link-checker-submit-button" class="inline-flex items-center gap-2 rounded-xl bg-blue-600 px-6 py-3 text-base font-bold text-white transition-colors hover:bg-blue-700">Check it</button>
+            </div>
+          </form>
+          <div id="verdict" aria-live="polite"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Features -->
+    <section id="features" class="py-16 md:py-24">
+      <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <p class="eyebrow text-emerald-700">What it does</p>
+        <h2 class="section-title max-w-2xl">Built around how tech-support scams actually work.</h2>
+        <p class="mt-4 max-w-2xl text-base text-slate-600 md:text-lg">Almost every scam call ends the same way: "install this app so I can fix your computer." Simple Scam Protection breaks that step.</p>
+        <div class="mt-12 grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
+          <article data-testid="feature-card-remote-access" class="feature lg:col-span-2 bg-slate-900 text-white">
+            <svg class="ico h-9 w-9 text-emerald-400"><use href="#i-monitor-x"/></svg>
+            <h3 class="feature-title">Remote-access blocker</h3>
+            <p class="mt-3 text-base leading-relaxed text-slate-300">Finds AnyDesk, TeamViewer, UltraViewer, RustDesk, ScreenConnect and more. Closes them the instant they start and helps you remove them. Microsoft Quick Assist is trusted by default - you can block it in Settings.</p>
+          </article>
+          <article data-testid="feature-card-fake" class="feature bg-red-50">
+            <svg class="ico h-9 w-9 text-red-600"><use href="#i-app-window"/></svg>
+            <h3 class="feature-title">Fake pop-up closer</h3>
+            <p class="feature-text">Spots fake 'Your PC is locked - call Microsoft' pages in Chrome, Edge, Firefox, Brave and Opera, and closes them automatically.</p>
+          </article>
+          <article data-testid="feature-card-settings" class="feature bg-amber-50">
+            <svg class="ico h-9 w-9 text-amber-700"><use href="#i-lock-keyhole"/></svg>
+            <h3 class="feature-title">Settings password</h3>
+            <p class="feature-text">A family member sets a password. Without it, nobody can switch protection off, trust a tool, clear the log, quit or uninstall.</p>
+          </article>
+          <article data-testid="feature-card-scammer-trick" class="feature bg-white">
+            <svg class="ico h-9 w-9 text-amber-600"><use href="#i-terminal"/></svg>
+            <h3 class="feature-title">Scammer-trick warnings</h3>
+            <p class="feature-text">Event Viewer, netstat, tree, syskey, msconfig - the tools scammers open to fake 'infections'. You'll get a clear warning.</p>
+          </article>
+          <article data-testid="feature-card-link" class="feature bg-white">
+            <svg class="ico h-9 w-9 text-blue-600"><use href="#i-link"/></svg>
+            <h3 class="feature-title">Link &amp; message checker</h3>
+            <p class="feature-text">Spots misspelled brand names, look-alike letters, odd domain endings, raw IP addresses and scam phrases.</p>
+          </article>
+          <article data-testid="feature-card-scam-website" class="feature bg-white">
+            <svg class="ico h-9 w-9 text-emerald-600"><use href="#i-globe"/></svg>
+            <h3 class="feature-title">Scam website blocking</h3>
+            <p class="feature-text">Blocks a built-in list of fake support and refund sites on your whole PC. Asks Windows for permission once.</p>
+          </article>
+          <article data-testid="feature-card-trusted" class="feature bg-white">
+            <svg class="ico h-9 w-9 text-red-600"><use href="#i-key"/></svg>
+            <h3 class="feature-title">Trusted list, scam-proofed</h3>
+            <p class="feature-text">Use remote tools for work? Mark them trusted - but only after typing a confirmation, so a caller can't rush you.</p>
+          </article>
+          <article data-testid="feature-card-private" class="feature bg-emerald-50">
+            <svg class="ico h-9 w-9 text-emerald-700"><use href="#i-scroll"/></svg>
+            <h3 class="feature-title">Private activity log</h3>
+            <p class="feature-text">A simple history of everything blocked or flagged. Stored only on your PC. No accounts, no tracking.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- Warning preview -->
+    <section id="preview" class="py-16 md:py-24">
+      <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div class="grain relative overflow-hidden rounded-3xl bg-slate-900 p-8 text-white md:p-14">
+          <p class="eyebrow text-emerald-400">See it in action</p>
+          <h2 class="font-display mt-3 max-w-2xl text-3xl font-extrabold sm:text-4xl">What happens when a scammer makes their move</h2>
+          <p class="mt-4 max-w-2xl text-base text-slate-300 md:text-lg">Warnings fill the whole screen, use big plain words, and can't be dismissed for a few seconds - so the message gets read, even while someone is talking in your ear.</p>
+          <div class="mt-10 grid gap-4 md:grid-cols-3">
+            <button type="button" data-testid="simulate-popup-button" data-warning="popup" class="sim hover:border-red-400">
+              <svg class="ico h-8 w-8 shrink-0 text-red-400"><use href="#i-app-window"/></svg>
+              <span><span class="block text-lg font-bold">Simulate: "Your PC is locked" pop-up</span><span class="mt-1 block text-slate-400">The fake page is closed and you're reassured.</span></span>
+            </button>
+            <button type="button" data-testid="simulate-remote-button" data-warning="remote" class="sim hover:border-red-400">
+              <svg class="ico h-8 w-8 shrink-0 text-red-400"><use href="#i-monitor-x"/></svg>
+              <span><span class="block text-lg font-bold">Simulate: caller makes you open AnyDesk</span><span class="mt-1 block text-slate-400">The app is closed instantly and you're warned.</span></span>
+            </button>
+            <button type="button" data-testid="simulate-command-button" data-warning="command" class="sim hover:border-amber-400">
+              <svg class="ico h-8 w-8 shrink-0 text-amber-400"><use href="#i-terminal"/></svg>
+              <span><span class="block text-lg font-bold">Simulate: "technician" opens Event Viewer</span><span class="mt-1 block text-slate-400">You're told why those "errors" are normal.</span></span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Install -->
+    <section id="install" class="bg-white py-16 md:py-24">
+      <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div class="flex flex-col justify-between gap-6 md:flex-row md:items-end">
+          <div>
+            <p class="eyebrow text-emerald-700">Download &amp; install</p>
+            <h2 class="section-title">Set it up in a couple of minutes</h2>
+          </div>
+          <a href="https://github.com/trcmsp/simple-scam-protection/releases/latest/download/SimpleScamProtectionSetup.exe" data-testid="download-install-button" class="inline-flex items-center gap-2.5 self-start rounded-2xl bg-emerald-600 px-7 py-4 text-lg font-bold text-white transition-colors hover:bg-emerald-700">
+            <svg class="ico h-5 w-5"><use href="#i-download"/></svg> Download the installer (.exe)
+          </a>
+        </div>
+
+        <div class="mt-10 inline-flex flex-wrap gap-1 rounded-xl bg-slate-100 p-1.5" role="tablist">
+          <button type="button" role="tab" class="tab is-active" data-tab="home" data-testid="install-tab-home" aria-selected="true">Install at home</button>
+          <button type="button" role="tab" class="tab" data-tab="rmm" data-testid="install-tab-rmm" aria-selected="false">IT / RMM / Intune</button>
+          <button type="button" role="tab" class="tab" data-tab="build" data-testid="install-tab-build" aria-selected="false">Build it yourself</button>
+        </div>
+
+        <div class="tab-panel mt-6" data-panel="home" role="tabpanel">
+          <ol class="grid grid-cols-1 gap-5 md:grid-cols-2">
+            <li class="step" data-testid="home-step-1"><span class="step-num">1</span><div class="step-body"><h3 class="step-title">Download the installer</h3><p class="step-text">Click the green button to download <strong>SimpleScamProtectionSetup.exe</strong>. Everything it needs is inside - no extra downloads.</p></div></li>
+            <li class="step" data-testid="home-step-2"><span class="step-num">2</span><div class="step-body"><h3 class="step-title">Open it and click Install</h3><p class="step-text">Windows asks for permission once. If it says "Windows protected your PC", click <strong>More info</strong>, then <strong>Run anyway</strong>.</p></div></li>
+            <li class="step" data-testid="home-step-3"><span class="step-num">3</span><div class="step-body"><h3 class="step-title">Let it scan</h3><p class="step-text">On first start it looks for remote-access tools and offers to remove any you didn't install yourself.</p></div></li>
+            <li class="step" data-testid="home-step-4"><span class="step-num">4</span><div class="step-body"><h3 class="step-title">That's it - you're protected</h3><p class="step-text">It sits in the taskbar tray showing "Protected" and starts with Windows. Setting up a relative's PC? Add a settings password in Settings.</p></div></li>
+          </ol>
+        </div>
+
+        <div class="tab-panel mt-6 hidden" data-panel="rmm" role="tabpanel">
+          <div data-testid="rmm-guide" class="grid gap-8 rounded-2xl border border-slate-200 bg-slate-50 p-6 md:p-8 lg:grid-cols-2">
+            <div class="min-w-0 space-y-6">
+              <p class="text-base leading-relaxed text-slate-700">Works with any RMM, Intune, PDQ, SCCM or Group Policy - choose Setup.exe or the MSI. Runs as SYSTEM, installs per-machine and auto-starts for every user. No prerequisites.</p>
+              <div class="flex flex-wrap gap-3">
+                <a class="dl-chip" data-testid="download-msi-button" href="https://github.com/trcmsp/simple-scam-protection/releases/latest/download/SimpleScamProtection.msi"><svg class="ico h-4 w-4"><use href="#i-download"/></svg> SimpleScamProtection.msi</a>
+                <a class="dl-chip" data-testid="download-portable-button" href="https://github.com/trcmsp/simple-scam-protection/releases/latest/download/SimpleScamProtection.exe"><svg class="ico h-4 w-4"><use href="#i-download"/></svg> Portable .exe</a>
+              </div>
+              <div><p class="cmd-label">Silent install (Setup.exe)</p><div class="cmd"><code data-testid="rmm-cmd-install">SimpleScamProtectionSetup.exe /VERYSILENT /SUPPRESSMSGBOXES /NORESTART /ALLOW=screenconnect /LOG="C:\Windows\Temp\SimpleScamProtection.log"</code><button type="button" class="copy-btn" data-testid="rmm-copy-install" aria-label="Copy command"><svg class="ico h-4 w-4"><use href="#i-copy"/></svg></button></div></div>
+              <div><p class="cmd-label">Silent uninstall (Setup.exe)</p><div class="cmd"><code data-testid="rmm-cmd-uninstall">"C:\Program Files\Simple Scam Protection\unins000.exe" /VERYSILENT /SUPPRESSMSGBOXES /NORESTART</code><button type="button" class="copy-btn" data-testid="rmm-copy-uninstall" aria-label="Copy command"><svg class="ico h-4 w-4"><use href="#i-copy"/></svg></button></div></div>
+              <div><p class="cmd-label">MSI install (Intune / Group Policy / SCCM)</p><div class="cmd"><code data-testid="rmm-cmd-msi">msiexec /i SimpleScamProtection.msi /qn /norestart ALLOW=screenconnect</code><button type="button" class="copy-btn" data-testid="rmm-copy-msi" aria-label="Copy command"><svg class="ico h-4 w-4"><use href="#i-copy"/></svg></button></div></div>
+              <div><p class="cmd-label">MSI uninstall</p><div class="cmd"><code data-testid="rmm-cmd-msi-uninstall">msiexec /x SimpleScamProtection.msi /qn /norestart</code><button type="button" class="copy-btn" data-testid="rmm-copy-msi-uninstall" aria-label="Copy command"><svg class="ico h-4 w-4"><use href="#i-copy"/></svg></button></div></div>
+              <div><p class="cmd-label">Create a password hash (run once on any PC)</p><div class="cmd"><code data-testid="rmm-cmd-hash">SimpleScamProtection.exe --hash-password</code><button type="button" class="copy-btn" data-testid="rmm-copy-hash" aria-label="Copy command"><svg class="ico h-4 w-4"><use href="#i-copy"/></svg></button></div></div>
+            </div>
+            <div class="min-w-0">
+              <p class="mb-3 text-sm font-semibold text-slate-500">Installer options <span class="font-normal">(MSI: same names without the slash, e.g. NOAUTOSTART=1)</span></p>
+              <ul class="divide-y divide-slate-200 rounded-xl border border-slate-200 bg-white">
+                <li class="p-4"><code class="opt">/ALLOW=screenconnect,teamviewer</code><p class="mt-1 text-sm text-slate-600">Pre-trust your own remote tools so your RMM / remote agent is never blocked</p></li>
+                <li class="p-4"><code class="opt">/PASSWORDHASH=pbkdf2_sha256$…</code><p class="mt-1 text-sm text-slate-600">Lock settings &amp; uninstall with a password (hash only - no plain password in scripts)</p></li>
+                <li class="p-4"><code class="opt">/NOAUTOSTART</code><p class="mt-1 text-sm text-slate-600">Don't start for every user at logon</p></li>
+                <li class="p-4"><code class="opt">/NOSITEBLOCK</code><p class="mt-1 text-sm text-slate-600">Don't add the scam-site block to the hosts file</p></li>
+                <li class="p-4"><code class="opt">/NOPOPUPBLOCK</code><p class="mt-1 text-sm text-slate-600">Don't close fake virus pop-ups by default</p></li>
+                <li class="p-4"><code class="opt">/DIR="D:\Apps\Simple Scam Protection"</code><p class="mt-1 text-sm text-slate-600">Custom install folder (Setup.exe only)</p></li>
+              </ul>
+              <p class="mt-4 text-sm text-slate-500">Change policy later without reinstalling: <code class="font-mono-gs">SimpleScamProtection.exe --configure --allow …</code>. Policy lives in C:\ProgramData\SimpleScamProtection (admin-only).</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="tab-panel mt-6 hidden" data-panel="build" role="tabpanel">
+          <ol class="grid grid-cols-1 gap-5 md:grid-cols-2">
+            <li class="step" data-testid="build-step-1"><span class="step-num">1</span><div class="step-body"><h3 class="step-title">Download the source code</h3><p class="step-text"><a class="font-semibold text-emerald-700 underline" data-testid="download-source-link" href="https://github.com/trcmsp/simple-scam-protection/archive/refs/heads/main.zip">Download the zip</a>, right-click it and choose "Extract All".</p></div></li>
+            <li class="step" data-testid="build-step-2"><span class="step-num">2</span><div class="step-body"><h3 class="step-title">Double-click build_exe.bat</h3><p class="step-text">It's in the windows_app folder. It fetches everything it needs by itself - including a private copy of Python - and builds the installer and the MSI.</p></div></li>
+            <li class="step" data-testid="build-step-3"><span class="step-num">3</span><div class="step-body"><h3 class="step-title">Find your files in "dist"</h3><p class="step-text">SimpleScamProtectionSetup.exe, SimpleScamProtection.msi and a portable SimpleScamProtection.exe.</p></div></li>
+            <li class="step" data-testid="build-step-4"><span class="step-num">4</span><div class="step-body"><h3 class="step-title">Or let GitHub build it</h3><p class="step-text">Push the code to GitHub - the included workflow builds all three files. Push a tag like v1.3.0 to publish them as a release.</p></div></li>
+          </ol>
+        </div>
+
+        <div data-testid="smartscreen-notice" class="mt-8 flex gap-4 rounded-2xl border border-amber-300 bg-amber-50 p-6">
+          <svg class="ico h-6 w-6 shrink-0 text-amber-700"><use href="#i-info"/></svg>
+          <p class="text-base leading-relaxed text-slate-800"><strong>"Windows protected your PC"?</strong> That's expected - Simple Scam Protection is free and not code-signed yet. Click <strong>More info</strong>, then <strong>Run anyway</strong>. The installer asks for administrator permission once.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section id="faq" class="py-16 md:py-24">
+      <div class="mx-auto grid max-w-7xl gap-10 px-4 sm:px-6 lg:grid-cols-[0.7fr_1.3fr] lg:px-8">
+        <div>
+          <p class="eyebrow text-emerald-700">Questions</p>
+          <h2 class="section-title">Good to know</h2>
+          <p class="mt-4 text-base text-slate-600 md:text-lg">The one rule that beats every scam: <strong>real companies never call you to fix your computer.</strong></p>
+        </div>
+        <div class="space-y-3" id="faq-list">
+          <details class="faq" data-testid="faq-item-0"><summary data-testid="faq-trigger-0">Is Simple Scam Protection really free?<svg class="ico chev"><use href="#i-chevron"/></svg></summary><p>Yes. No subscription, no account, no ads. Everything runs on your PC. If it helps you or your family, you can <a class="font-semibold text-emerald-700 underline" href="https://buymeacoffee.com/trcmsp" target="_blank" rel="noopener">buy me a coffee</a>.</p></details>
+          <details class="faq" data-testid="faq-item-1"><summary data-testid="faq-trigger-1">Does it send my data anywhere?<svg class="ico chev"><use href="#i-chevron"/></svg></summary><p>No. The activity log and settings stay in your Windows user folder. The link checker in the app - and on this page - works fully offline.</p></details>
+          <details class="faq" data-testid="faq-item-2"><summary data-testid="faq-trigger-2">Can I install it on my parents' PC?<svg class="ico chev"><use href="#i-chevron"/></svg></summary><p>That's exactly who it's for. Install it once and it starts with Windows, runs in the tray and needs no attention. Warnings are big and written in plain language.</p></details>
+          <details class="faq" data-testid="faq-item-3"><summary data-testid="faq-trigger-3">What if I use TeamViewer or AnyDesk for work?<svg class="ico chev"><use href="#i-chevron"/></svg></summary><p>Open Settings &amp; Trusted, select the tool and type the confirmation phrase. That tool will then be allowed. The typed step is there so a scammer can't casually talk someone through it.</p></details>
+          <details class="faq" data-testid="faq-item-4"><summary data-testid="faq-trigger-4">Why is Microsoft Quick Assist allowed?<svg class="ico chev"><use href="#i-chevron"/></svg></summary><p>Quick Assist is built into Windows and is how many families and IT teams help each other, so it's trusted by default. Scammers use it too - if nobody you know uses it to help you, untrust it in Settings &amp; Trusted and it will be blocked like the others.</p></details>
+          <details class="faq" data-testid="faq-item-5"><summary data-testid="faq-trigger-5">Why does Windows show a warning when I run it?<svg class="ico chev"><use href="#i-chevron"/></svg></summary><p>The app isn't code-signed yet, so Windows SmartScreen doesn't recognise the publisher. Click More info, then Run anyway.</p></details>
+          <details class="faq" data-testid="faq-item-6"><summary data-testid="faq-trigger-6">How does the fake pop-up closer work?<svg class="ico chev"><use href="#i-chevron"/></svg></summary><p>It watches browser window titles for the tell-tale signs of fake 'Microsoft security alert' pages - like 'Your PC is locked' together with 'call support' or a toll-free number. It first closes just that tab; if the page fights back it closes the browser.</p></details>
+          <details class="faq" data-testid="faq-item-7"><summary data-testid="faq-trigger-7">What does the settings password protect?<svg class="ico chev"><use href="#i-chevron"/></svg></summary><p>Turning off any protection, trusting a remote tool, clearing the activity log, quitting the app and uninstalling it. After 5 wrong tries it locks for a minute. IT admins can set it during a silent install.</p></details>
+          <details class="faq" data-testid="faq-item-8"><summary data-testid="faq-trigger-8">Can IT teams or MSPs deploy it with an RMM?<svg class="ico chev"><use href="#i-chevron"/></svg></summary><p>Yes. The installer supports /VERYSILENT with options to pre-trust your own remote tool (so your RMM agent isn't blocked), set a password hash, and skip auto-start or site blocking. Silent uninstall is supported too.</p></details>
+          <details class="faq" data-testid="faq-item-9"><summary data-testid="faq-trigger-9">Is there an MSI for Intune or Group Policy?<svg class="ico chev"><use href="#i-chevron"/></svg></summary><p>Yes - SimpleScamProtection.msi (64-bit, per-machine). Use msiexec /i ... /qn with properties like ALLOW=screenconnect, NOAUTOSTART=1 or PASSWORDHASH=. Upgrades install over the old version automatically.</p></details>
+          <details class="faq" data-testid="faq-item-10"><summary data-testid="faq-trigger-10">Is it an antivirus?<svg class="ico chev"><use href="#i-chevron"/></svg></summary><p>No. It targets the specific tricks tech-support scammers use. Keep Windows Defender (or your antivirus) turned on as well.</p></details>
+          <details class="faq" data-testid="faq-item-11"><summary data-testid="faq-trigger-11">Can it catch every remote tool or scam link?<svg class="ico chev"><use href="#i-chevron"/></svg></summary><p>It recognises well-known tools by name and checks links with rules. Brand-new or renamed tools and brand-new scam sites may be missed - when in doubt, hang up and call a family member.</p></details>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="border-t border-slate-200 bg-white">
+    <div class="mx-auto flex max-w-7xl flex-col gap-5 px-4 py-10 sm:px-6 md:flex-row md:items-center md:justify-between lg:px-8">
+      <a href="#top" class="flex items-center gap-2.5">
+        <span class="grid h-9 w-9 shrink-0 place-items-center rounded-xl bg-emerald-600 text-white"><svg class="ico h-6 w-6" style="stroke-width:2.4"><use href="#i-shield-check"/></svg></span>
+        <span class="font-display text-base font-extrabold text-slate-900 sm:text-xl">Simple Scam Protection</span>
+      </a>
+      <a href="https://buymeacoffee.com/trcmsp" target="_blank" rel="noopener" data-testid="footer-coffee-link" class="coffee-link self-start md:self-auto"><svg class="ico h-4 w-4"><use href="#i-coffee"/></svg> Buy me a coffee</a>
+      <p class="text-sm text-slate-500" data-testid="footer-note">© <span id="year">2026</span> simplescamprotection.com · Free anti-scam tool for Windows 10 &amp; 11 · Not affiliated with Microsoft or any listed software vendor.</p>
+    </div>
+  </footer>
+
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+
+  <script src="assets/rules.js"></script>
+  <script src="assets/linkcheck.js"></script>
+  <script src="assets/site.js"></script>
+</body>
+</html>

@@ -8,7 +8,7 @@ echo   the .build folder next to this file. Nothing else changes.
 echo ============================================================
 cd /d "%~dp0"
 set "BUILD=%~dp0.build"
-set "VERSION=1.2.0"
+set "VERSION=1.3.0"
 if not exist "%BUILD%" mkdir "%BUILD%"
 
 set "PY=%BUILD%\python\python.exe"

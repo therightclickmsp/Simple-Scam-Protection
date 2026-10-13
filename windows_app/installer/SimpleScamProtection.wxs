@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
   Simple Scam Protection MSI (WiX Toolset v5). For Intune, Group Policy, SCCM/MECM and RMM tools.
-  Build:  wix build -arch x64 -d Version=1.2.0 -d ExePath=dist\SimpleScamProtection.exe -o dist\SimpleScamProtection.msi installer\SimpleScamProtection.wxs
+  Build:  wix build -arch x64 -d Version=1.3.0 -d ExePath=dist\SimpleScamProtection.exe -o dist\SimpleScamProtection.msi installer\SimpleScamProtection.wxs
   Silent install:   msiexec /i SimpleScamProtection.msi /qn /norestart
   Properties:       ALLOW=screenconnect,teamviewer  PASSWORDHASH=pbkdf2_sha256$...  NOAUTOSTART=1  NOSITEBLOCK=1  NOPOPUPBLOCK=1
   Silent uninstall: msiexec /x SimpleScamProtection.msi /qn /norestart   (or by product code)
