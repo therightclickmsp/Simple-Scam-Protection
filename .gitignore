@@ -89,3 +89,8 @@ android-sdk/
 credentials.json
 *.key
 .credentials
+
+# Static website (kept in this workspace, not pushed to GitHub)
+static_site/
+website_build/
+frontend/public/site
