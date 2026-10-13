@@ -1,9 +1,10 @@
-import { Download, Search, Check, Lock, MonitorSmartphone, Terminal, Globe } from "lucide-react";
+import { Download, Search, Check, Lock, MonitorSmartphone, Terminal, Globe, AppWindow } from "lucide-react";
 import { DOWNLOAD_URL } from "@/lib/api";
 
 const rows = [
   [MonitorSmartphone, "Block remote-access tools"],
   [Terminal, "Warn about scammer tricks"],
+  [AppWindow, "Close fake virus pop-ups"],
   [Globe, "Block scam websites"],
 ];
 
@@ -13,7 +14,7 @@ const AppMock = () => (
       <span className="h-3 w-3 rounded-full bg-slate-300" />
       <span className="h-3 w-3 rounded-full bg-slate-300" />
       <span className="h-3 w-3 rounded-full bg-slate-300" />
-      <span className="ml-3 text-xs font-semibold text-slate-500">Guardian Shield 1.0</span>
+      <span className="ml-3 text-xs font-semibold text-slate-500">Guardian Shield 1.1</span>
     </div>
     <div className="grid grid-cols-[120px_1fr] sm:grid-cols-[150px_1fr]">
       <div className="space-y-1 bg-slate-900 p-4 text-sm">

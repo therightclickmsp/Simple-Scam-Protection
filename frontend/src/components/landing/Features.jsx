@@ -1,12 +1,14 @@
-import { MonitorX, TerminalSquare, Link2, Globe2, ScrollText, KeyRound } from "lucide-react";
+import { MonitorX, TerminalSquare, Link2, Globe2, ScrollText, KeyRound, AppWindow, LockKeyhole } from "lucide-react";
 
 const features = [
   [MonitorX, "Remote-access blocker", "Finds AnyDesk, TeamViewer, UltraViewer, RustDesk, Quick Assist and more. Closes them the instant they start and helps you remove them.", "lg:col-span-2 bg-slate-900 text-white", "text-emerald-400"],
+  [AppWindow, "Fake pop-up closer", "Spots fake 'Your PC is locked - call Microsoft' pages in Chrome, Edge, Firefox, Brave and Opera, and closes them automatically.", "bg-red-50", "text-red-600"],
+  [LockKeyhole, "Settings password", "A family member sets a password. Without it, nobody can switch protection off, trust a tool, clear the log, quit or uninstall.", "bg-amber-50", "text-amber-700"],
   [TerminalSquare, "Scammer-trick warnings", "Event Viewer, netstat, tree, syskey, msconfig - the tools scammers open to fake 'infections'. You'll get a clear warning.", "bg-white", "text-amber-600"],
   [Link2, "Link & message checker", "Spots misspelled brand names, look-alike letters, odd domain endings, raw IP addresses and scam phrases.", "bg-white", "text-blue-600"],
   [Globe2, "Scam website blocking", "Blocks a built-in list of fake support and refund sites on your whole PC. Asks Windows for permission once.", "bg-white", "text-emerald-600"],
   [KeyRound, "Trusted list, scam-proofed", "Use remote tools for work? Mark them trusted - but only after typing a confirmation, so a caller can't rush you.", "bg-white", "text-red-600"],
-  [ScrollText, "Private activity log", "A simple history of everything blocked or flagged. Stored only on your PC. No accounts, no tracking.", "lg:col-span-3 bg-emerald-50", "text-emerald-700"],
+  [ScrollText, "Private activity log", "A simple history of everything blocked or flagged. Stored only on your PC. No accounts, no tracking.", "bg-emerald-50", "text-emerald-700"],
 ];
 
 export default function Features() {

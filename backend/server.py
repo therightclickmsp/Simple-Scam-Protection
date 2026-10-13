@@ -91,7 +91,7 @@ def build_zip() -> bytes:
     with zipfile.ZipFile(buf, "w", zipfile.ZIP_DEFLATED) as z:
         for path in APP_DIR.rglob("*"):
             rel = path.relative_to(APP_DIR)
-            if path.is_file() and not any(p in ("__pycache__", ".pytest_cache") for p in rel.parts):
+            if path.is_file() and not any(p in ("__pycache__", ".pytest_cache", ".build", "dist", "build") for p in rel.parts):
                 z.write(path, Path("GuardianShield") / rel)
     return buf.getvalue()
 

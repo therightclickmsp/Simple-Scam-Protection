@@ -1,12 +1,17 @@
 import { useEffect, useState } from "react";
 import { createPortal } from "react-dom";
-import { MonitorX, TerminalSquare, TriangleAlert } from "lucide-react";
+import { MonitorX, TerminalSquare, TriangleAlert, AppWindow } from "lucide-react";
 
 const SCENARIOS = {
   remote: {
     bg: "bg-red-600",
     title: "Someone may be trying to control your computer",
     text: "AnyDesk just tried to start, and Guardian Shield closed it. If a caller, pop-up or message asked you to install or open it, it is a SCAM. Hang up the phone now. Microsoft, Apple, your bank and the government never call you to fix your computer.",
+  },
+  popup: {
+    bg: "bg-red-600",
+    title: "That was a FAKE virus warning",
+    text: "A web page pretending to be a Microsoft security alert appeared, and Guardian Shield closed it. Your computer is NOT locked or infected. Do NOT call the number it showed. When you reopen your browser, don't click 'Restore pages'.",
   },
   command: {
     bg: "bg-amber-600",
@@ -56,7 +61,14 @@ export default function AlertPreview() {
             Warnings fill the whole screen, use big plain words, and can't be dismissed for a few seconds - so the
             message gets read, even while someone is talking in your ear.
           </p>
-          <div className="mt-10 grid gap-4 md:grid-cols-2">
+          <div className="mt-10 grid gap-4 md:grid-cols-3">
+            <button data-testid="simulate-popup-button" onClick={() => setKind("popup")} className="group flex items-start gap-4 rounded-2xl border border-slate-700 bg-slate-800 p-6 text-left transition-colors hover:border-red-400">
+              <AppWindow className="h-8 w-8 shrink-0 text-red-400" />
+              <span>
+                <span className="block text-lg font-bold">Simulate: "Your PC is locked" pop-up</span>
+                <span className="mt-1 block text-slate-400">The fake page is closed and you're reassured.</span>
+              </span>
+            </button>
             <button data-testid="simulate-remote-button" onClick={() => setKind("remote")} className="group flex items-start gap-4 rounded-2xl border border-slate-700 bg-slate-800 p-6 text-left transition-colors hover:border-red-400">
               <MonitorX className="h-8 w-8 shrink-0 text-red-400" />
               <span>

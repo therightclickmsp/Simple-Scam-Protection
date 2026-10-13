@@ -13,7 +13,15 @@ jobs:
       - run: pip install -r requirements.txt pyinstaller pytest
       - run: python -m pytest tests -q
       - run: pyinstaller --noconfirm --onefile --windowed --name GuardianShield --hidden-import pystray._win32 run_guardian_shield.py
+      - name: Build installer
+        shell: pwsh
+        run: |
+          $iscc = "${env:ProgramFiles(x86)}\Inno Setup 6\ISCC.exe"
+          if (-not (Test-Path $iscc)) { choco install innosetup -y --no-progress }
+          & $iscc installer\GuardianShield.iss
       - uses: actions/upload-artifact@v4
         with:
-          name: GuardianShield-exe
-          path: dist/GuardianShield.exe
+          name: GuardianShield-windows
+          path: |
+            dist/GuardianShieldSetup.exe
+            dist/GuardianShield.exe
