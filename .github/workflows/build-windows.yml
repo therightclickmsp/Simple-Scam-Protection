@@ -1,0 +1,39 @@
+name: Build Simple Scam Protection (Windows)
+on:
+  push:
+    paths:
+      - "windows_app/**"
+      - ".github/workflows/build-windows.yml"
+  workflow_dispatch:
+jobs:
+  build:
+    runs-on: windows-latest
+    defaults:
+      run:
+        working-directory: windows_app
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install -r requirements.txt pyinstaller pytest
+      - run: python -m pytest tests -q
+      - run: pyinstaller --noconfirm --onefile --windowed --name SimpleScamProtection --hidden-import pystray._win32 run_simple_scam_protection.py
+      - name: Build installer
+        shell: pwsh
+        run: |
+          $iscc = "${env:ProgramFiles(x86)}\Inno Setup 6\ISCC.exe"
+          if (-not (Test-Path $iscc)) { choco install innosetup -y --no-progress }
+          & $iscc /DAppVersion=1.2.0 installer\SimpleScamProtection.iss
+      - name: Build MSI
+        shell: pwsh
+        run: |
+          dotnet tool install --global wix --version 5.0.2
+          wix build -arch x64 -d Version=1.2.0 -d ExePath=dist\SimpleScamProtection.exe -o dist\SimpleScamProtection.msi installer\SimpleScamProtection.wxs
+      - uses: actions/upload-artifact@v4
+        with:
+          name: SimpleScamProtection-windows
+          path: |
+            windows_app/dist/SimpleScamProtectionSetup.exe
+            windows_app/dist/SimpleScamProtection.msi
+            windows_app/dist/SimpleScamProtection.exe
