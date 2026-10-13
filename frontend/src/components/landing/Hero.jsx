@@ -14,7 +14,7 @@ const AppMock = () => (
       <span className="h-3 w-3 rounded-full bg-slate-300" />
       <span className="h-3 w-3 rounded-full bg-slate-300" />
       <span className="h-3 w-3 rounded-full bg-slate-300" />
-      <span className="ml-3 text-xs font-semibold text-slate-500">Guardian Shield 1.1</span>
+      <span className="ml-3 text-xs font-semibold text-slate-500">Simple Scam Protection 1.2</span>
     </div>
     <div className="grid grid-cols-[120px_1fr] sm:grid-cols-[150px_1fr]">
       <div className="space-y-1 bg-slate-900 p-4 text-sm">
@@ -61,7 +61,7 @@ export default function Hero() {
             Stop tech-support scammers <span className="text-emerald-700">before they take control.</span>
           </h1>
           <p className="rise d2 mt-6 max-w-xl text-lg leading-relaxed text-slate-600 sm:text-xl">
-            Guardian Shield quietly sits in your taskbar. It closes remote-control apps like AnyDesk and TeamViewer
+            Simple Scam Protection quietly sits in your taskbar. It closes remote-control apps like AnyDesk and TeamViewer
             the moment they start, warns you when a "technician" opens scary-looking Windows tools, and checks links
             for scam signs.
           </p>

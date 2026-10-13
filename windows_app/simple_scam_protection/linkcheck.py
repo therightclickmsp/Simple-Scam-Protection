@@ -156,7 +156,7 @@ def analyze_url(raw):
         reasons.append(reason)
 
     if host in SCAM_DOMAINS or reg in SCAM_DOMAINS:
-        add(100, "This website is on Guardian Shield's list of known scam / fake-support sites.")
+        add(100, "This website is on Simple Scam Protection's list of known scam / fake-support sites.")
     if "@" in parsed.netloc:
         add(35, "Contains an '@' symbol that hides the real website address.")
     if IPV4.match(host):

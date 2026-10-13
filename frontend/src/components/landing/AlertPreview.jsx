@@ -6,12 +6,12 @@ const SCENARIOS = {
   remote: {
     bg: "bg-red-600",
     title: "Someone may be trying to control your computer",
-    text: "AnyDesk just tried to start, and Guardian Shield closed it. If a caller, pop-up or message asked you to install or open it, it is a SCAM. Hang up the phone now. Microsoft, Apple, your bank and the government never call you to fix your computer.",
+    text: "AnyDesk just tried to start, and Simple Scam Protection closed it. If a caller, pop-up or message asked you to install or open it, it is a SCAM. Hang up the phone now. Microsoft, Apple, your bank and the government never call you to fix your computer.",
   },
   popup: {
     bg: "bg-red-600",
     title: "That was a FAKE virus warning",
-    text: "A web page pretending to be a Microsoft security alert appeared, and Guardian Shield closed it. Your computer is NOT locked or infected. Do NOT call the number it showed. When you reopen your browser, don't click 'Restore pages'.",
+    text: "A web page pretending to be a Microsoft security alert appeared, and Simple Scam Protection closed it. Your computer is NOT locked or infected. Do NOT call the number it showed. When you reopen your browser, don't click 'Restore pages'.",
   },
   command: {
     bg: "bg-amber-600",

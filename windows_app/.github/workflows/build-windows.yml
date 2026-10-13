@@ -1,4 +1,4 @@
-name: Build Guardian Shield (Windows)
+name: Build Simple Scam Protection (Windows)
 on:
   push:
   workflow_dispatch:
@@ -12,16 +12,22 @@ jobs:
           python-version: "3.12"
       - run: pip install -r requirements.txt pyinstaller pytest
       - run: python -m pytest tests -q
-      - run: pyinstaller --noconfirm --onefile --windowed --name GuardianShield --hidden-import pystray._win32 run_guardian_shield.py
+      - run: pyinstaller --noconfirm --onefile --windowed --name SimpleScamProtection --hidden-import pystray._win32 run_simple_scam_protection.py
       - name: Build installer
         shell: pwsh
         run: |
           $iscc = "${env:ProgramFiles(x86)}\Inno Setup 6\ISCC.exe"
           if (-not (Test-Path $iscc)) { choco install innosetup -y --no-progress }
-          & $iscc installer\GuardianShield.iss
+          & $iscc /DAppVersion=1.2.0 installer\SimpleScamProtection.iss
+      - name: Build MSI
+        shell: pwsh
+        run: |
+          dotnet tool install --global wix --version 5.0.2
+          wix build -arch x64 -d Version=1.2.0 -d ExePath=dist\SimpleScamProtection.exe -o dist\SimpleScamProtection.msi installer\SimpleScamProtection.wxs
       - uses: actions/upload-artifact@v4
         with:
-          name: GuardianShield-windows
+          name: SimpleScamProtection-windows
           path: |
-            dist/GuardianShieldSetup.exe
-            dist/GuardianShield.exe
+            dist/SimpleScamProtectionSetup.exe
+            dist/SimpleScamProtection.msi
+            dist/SimpleScamProtection.exe

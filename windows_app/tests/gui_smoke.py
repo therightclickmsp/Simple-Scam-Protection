@@ -6,15 +6,15 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 tmp = tempfile.mkdtemp()
-os.environ["GUARDIAN_SHIELD_HOME"] = tmp
-os.environ["GUARDIAN_SHIELD_POLICY"] = os.path.join(tmp, "policy.json")
+os.environ["SIMPLE_SCAM_PROTECTION_HOME"] = tmp
+os.environ["SIMPLE_SCAM_PROTECTION_POLICY"] = os.path.join(tmp, "policy.json")
 
-from guardian_shield import auth, gui  # noqa: E402
-from guardian_shield.signatures import TOOLS_BY_ID, SCAM_COMMANDS  # noqa: E402
+from simple_scam_protection import auth, gui  # noqa: E402
+from simple_scam_protection.signatures import TOOLS_BY_ID, SCAM_COMMANDS  # noqa: E402
 
 auth.ITERATIONS = 1000
 gui.WarningScreen._count = lambda self, n: self.btn.configure(state="normal")
-app = gui.GuardianApp(start_minimized=False)
+app = gui.ScamProtectionApp(start_minimized=False)
 app.store.set("first_run_done", True)
 steps = []
 

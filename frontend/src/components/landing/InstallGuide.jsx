@@ -5,23 +5,23 @@ import RmmGuide from "@/components/landing/RmmGuide";
 
 const PC_STEPS = [
   ["Download & extract the zip", "Click the green button. Save the zip, then right-click it and choose \"Extract All\"."],
-  ["Double-click build_exe.bat", "It fetches everything it needs by itself - including a private copy of Python - and builds the app. Takes a few minutes. Nothing else on the PC is changed."],
-  ["Run GuardianShieldSetup.exe", "You'll find it in the \"dist\" folder. Python is bundled inside, so you can copy this one file to any PC - including a relative's."],
-  ["That's it - you're protected", "Guardian Shield scans for remote-access tools, then sits in the taskbar tray showing \"Protected\". It starts with Windows."],
+  ["Double-click build_exe.bat", "It fetches everything it needs by itself - including a private copy of Python - and builds the installer and the MSI. Takes a few minutes. Nothing else on the PC is changed."],
+  ["Run SimpleScamProtectionSetup.exe", "You'll find it in the \"dist\" folder. Python is bundled inside, so you can copy this one file to any PC - including a relative's."],
+  ["That's it - you're protected", "Simple Scam Protection scans for remote-access tools, then sits in the taskbar tray showing \"Protected\". It starts with Windows."],
 ];
 const GH_STEPS = [
   ["Upload to GitHub", "Create a free GitHub repository and upload the extracted folder."],
-  ["Let GitHub build it", "The included workflow builds GuardianShieldSetup.exe and a portable GuardianShield.exe on a Windows machine."],
-  ["Download the installer", "Open the \"Actions\" tab, pick the latest run, and download \"GuardianShield-windows\" under Artifacts."],
-  ["Install on any PC", "Double-click GuardianShieldSetup.exe - or deploy it silently with your RMM (see the IT tab)."],
+  ["Let GitHub build it", "The included workflow builds SimpleScamProtectionSetup.exe, an MSI and a portable SimpleScamProtection.exe on a Windows machine."],
+  ["Download the installer", "Open the \"Actions\" tab, pick the latest run, and download \"SimpleScamProtection-windows\" under Artifacts."],
+  ["Install on any PC", "Double-click SimpleScamProtectionSetup.exe - or deploy it silently with your RMM (see the IT tab)."],
 ];
 
 const Steps = ({ steps, prefix }) => (
-  <ol className="grid gap-5 md:grid-cols-2">
+  <ol className="grid grid-cols-1 gap-5 md:grid-cols-2">
     {steps.map(([title, text], i) => (
-      <li key={title} data-testid={`${prefix}-step-${i + 1}`} className="flex gap-5 rounded-2xl border border-slate-200 bg-white p-6">
+      <li key={title} data-testid={`${prefix}-step-${i + 1}`} className="flex min-w-0 gap-4 rounded-2xl border border-slate-200 bg-white p-5 sm:gap-5 sm:p-6">
         <span className="font-display grid h-12 w-12 shrink-0 place-items-center rounded-xl bg-emerald-600 text-xl font-extrabold text-white">{i + 1}</span>
-        <div>
+        <div className="min-w-0 [overflow-wrap:anywhere]">
           <h3 className="font-display text-xl font-bold text-slate-900">{title}</h3>
           <p className="mt-1.5 text-base leading-relaxed text-slate-600">{text}</p>
         </div>
@@ -58,7 +58,7 @@ export default function InstallGuide() {
         <div data-testid="smartscreen-notice" className="mt-8 flex gap-4 rounded-2xl border border-amber-300 bg-amber-50 p-6">
           <Info className="h-6 w-6 shrink-0 text-amber-700" />
           <p className="text-base leading-relaxed text-slate-800">
-            <strong>"Windows protected your PC"?</strong> That's expected - Guardian Shield is free and not
+            <strong>"Windows protected your PC"?</strong> That's expected - Simple Scam Protection is free and not
             code-signed yet. Click <strong>More info</strong>, then <strong>Run anyway</strong>. The installer asks for
             administrator permission once.
           </p>

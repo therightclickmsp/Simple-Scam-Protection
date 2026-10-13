@@ -8,10 +8,10 @@ import pytest
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
 
-from guardian_shield import auth  # noqa: E402
-from guardian_shield.auth import PasswordGuard, make_hash, verify_hash  # noqa: E402
-from guardian_shield.popup import clean_title, is_scam_title  # noqa: E402
-from guardian_shield.storage import Store, write_policy  # noqa: E402
+from simple_scam_protection import auth  # noqa: E402
+from simple_scam_protection.auth import PasswordGuard, make_hash, verify_hash  # noqa: E402
+from simple_scam_protection.popup import clean_title, is_scam_title  # noqa: E402
+from simple_scam_protection.storage import Store, write_policy  # noqa: E402
 
 
 @pytest.fixture(autouse=True)
@@ -86,10 +86,10 @@ def test_policy_overrides(tmp_path):
 
 
 def test_configure_cli(tmp_path):
-    env = {"GUARDIAN_SHIELD_POLICY": str(tmp_path / "policy.json"), "GUARDIAN_SHIELD_HOME": str(tmp_path / "u"),
+    env = {"SIMPLE_SCAM_PROTECTION_POLICY": str(tmp_path / "policy.json"), "SIMPLE_SCAM_PROTECTION_HOME": str(tmp_path / "u"),
            "PATH": "/usr/bin:/bin"}
     h = make_hash("it-admin-secret!")
-    run = lambda *a: subprocess.run([sys.executable, "-m", "guardian_shield", *a], cwd=ROOT, env=env,
+    run = lambda *a: subprocess.run([sys.executable, "-m", "simple_scam_protection", *a], cwd=ROOT, env=env,
                                     capture_output=True, text=True)
     r = run("--configure", "--allow", "ScreenConnect,teamviewer", "--password-hash", h, "--no-popup-block")
     assert r.returncode == 0, r.stderr
@@ -98,3 +98,20 @@ def test_configure_cli(tmp_path):
     assert pol["defaults"]["popup_block"] is False
     assert run("--configure", "--allow", "notatool").returncode == 2
     assert run("--configure", "--password-hash", "plaintext").returncode == 2
+
+
+
+def test_configure_from_msi_properties(tmp_path):
+    pol_dir = tmp_path / "pd"
+    env = {"SIMPLE_SCAM_PROTECTION_POLICY": str(pol_dir / "policy.json"), "SIMPLE_SCAM_PROTECTION_HOME": str(tmp_path / "u"),
+           "PATH": "/usr/bin:/bin"}
+    h = make_hash("it-admin-secret!")
+    run = lambda *a: subprocess.run([sys.executable, "-m", "simple_scam_protection", *a], cwd=ROOT, env=env,
+                                    capture_output=True, text=True)
+    r = run("--configure", "--msi", "ALLOW=screenconnect", f"PASSWORDHASH={h}", "NOSITEBLOCK=1", "NOPOPUPBLOCK=")
+    assert r.returncode == 0, r.stderr
+    pol = json.loads((pol_dir / "policy.json").read_text())
+    assert pol["allowlist"] == ["screenconnect"] and pol["password_hash"] == h
+    assert pol["defaults"]["site_block"] is False and "popup_block" not in pol["defaults"]
+    assert run("--configure", "--msi", "ALLOW=bogus", "PASSWORDHASH=", "NOSITEBLOCK=1", "NOPOPUPBLOCK=").returncode == 2
+    assert run("--stop-running").returncode == 0

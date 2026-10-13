@@ -1,6 +1,6 @@
 {
   "project_identity": {
-    "name": "Guardian Shield",
+    "name": "Simple Scam Protection",
     "concept": "Free Windows Anti-Tech-Support-Scam Desktop App & Live Web Shield",
     "archetype": "ORGANIC & TRUSTWORTHY SECURITY (Organic & Earthy + Swiss Precision)",
     "target_audience": "Everyday Windows users, non-technical older adults, and concerned family caretakers",
@@ -51,16 +51,16 @@
   "navigation_and_header": {
     "style": "Sticky top-0 z-50 backdrop-blur-xl bg-white/85 dark:bg-slate-900/85 border-b border-slate-200 dark:border-slate-800",
     "elements": [
-      "Brand logo with animated Guardian Shield icon",
+      "Brand logo with animated Simple Scam Protection icon",
       "Nav Links: Live Checker, Features, How It Works, FAQ",
       "Theme toggle switch (Sun/Moon)",
-      "Primary CTA button: Download Guardian Shield"
+      "Primary CTA button: Download Simple Scam Protection"
     ]
   },
   "key_sections": {
     "hero": {
       "headline": "Stop Tech Support Scammers Before They Take Control",
-      "subheadline": "Guardian Shield blocks suspicious remote access tools (AnyDesk, TeamViewer), alerts on scam command execution, and verifies dangerous links in real time.",
+      "subheadline": "Simple Scam Protection blocks suspicious remote access tools (AnyDesk, TeamViewer), alerts on scam command execution, and verifies dangerous links in real time.",
       "cta": {
         "primary": "Download Free for Windows (v1.2)",
         "secondary": "Test a Link Online"
@@ -106,19 +106,19 @@
     "download_and_build_guide": {
       "title": "Download & Simple Installation",
       "download_contents": [
-        "GuardianShield_v1.2.zip containing source script (guardian_shield.py)",
+        "SimpleScamProtection_v1.2.zip containing source script (simple_scam_protection.py)",
         "Build executable script (build_exe.bat)",
         "Pre-configured rule definitions (rules.json)"
       ],
-      "smartscreen_notice": "Note: Because Guardian Shield is free and open-source, Windows SmartScreen may show 'Unknown Publisher'. Click 'More info' -> 'Run anyway' during first launch."
+      "smartscreen_notice": "Note: Because Simple Scam Protection is free and open-source, Windows SmartScreen may show 'Unknown Publisher'. Click 'More info' -> 'Run anyway' during first launch."
     },
     "faq": {
       "accordion_items": [
-        "Is Guardian Shield completely free?",
+        "Is Simple Scam Protection completely free?",
         "Why does Windows SmartScreen show a warning when building/running?",
         "Can I install this on my parents' PC?",
-        "Does Guardian Shield collect or upload my personal data?",
-        "What remote control tools does Guardian Shield block?"
+        "Does Simple Scam Protection collect or upload my personal data?",
+        "What remote control tools does Simple Scam Protection block?"
       ]
     }
   },
@@ -147,7 +147,7 @@
     "Implement the landing page in React with Tailwind CSS, supporting both Light and Dark modes seamlessly.",
     "Use Phosphor or Lucide icons for rich security indicators (ShieldCheck, AlertTriangle, Lock, Terminal, Monitor, UserCheck).",
     "Ensure the Live Link Checker has a comprehensive set of predefined sample scam messages and URLs so users can quickly test one-click presets.",
-    "Provide downloadable mock ZIP contents (or client-side text generation/download blob) for 'GuardianShield_v1.2.zip'.",
+    "Provide downloadable mock ZIP contents (or client-side text generation/download blob) for 'SimpleScamProtection_v1.2.zip'.",
     "Include an interactive alert simulator allowing users to see how the system tray notification responds to scam attempts.",
     "Strictly follow contrast and large readable typography standards for accessibility."
   ]

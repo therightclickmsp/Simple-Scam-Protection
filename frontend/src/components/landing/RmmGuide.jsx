@@ -1,9 +1,11 @@
 import { Copy } from "lucide-react";
 import { toast } from "sonner";
 
-const INSTALL = 'GuardianShieldSetup.exe /VERYSILENT /SUPPRESSMSGBOXES /NORESTART /ALLOW=screenconnect /LOG="C:\\Windows\\Temp\\GuardianShield.log"';
-const UNINSTALL = '"C:\\Program Files\\Guardian Shield\\unins000.exe" /VERYSILENT /SUPPRESSMSGBOXES /NORESTART';
-const HASH = "GuardianShield.exe --hash-password";
+const INSTALL = 'SimpleScamProtectionSetup.exe /VERYSILENT /SUPPRESSMSGBOXES /NORESTART /ALLOW=screenconnect /LOG="C:\\Windows\\Temp\\SimpleScamProtection.log"';
+const UNINSTALL = '"C:\\Program Files\\Simple Scam Protection\\unins000.exe" /VERYSILENT /SUPPRESSMSGBOXES /NORESTART';
+const HASH = "SimpleScamProtection.exe --hash-password";
+const MSI = 'msiexec /i SimpleScamProtection.msi /qn /norestart ALLOW=screenconnect';
+const MSI_UNINSTALL = "msiexec /x SimpleScamProtection.msi /qn /norestart";
 
 const OPTIONS = [
   ["/ALLOW=screenconnect,teamviewer", "Pre-trust your own remote tools so your RMM / remote agent is never blocked"],
@@ -11,7 +13,7 @@ const OPTIONS = [
   ["/NOAUTOSTART", "Don't start for every user at logon"],
   ["/NOSITEBLOCK", "Don't add the scam-site block to the hosts file"],
   ["/NOPOPUPBLOCK", "Don't close fake virus pop-ups by default"],
-  ['/DIR="D:\\Apps\\Guardian Shield"', "Custom install folder"],
+  ['/DIR="D:\\Apps\\Simple Scam Protection"', "Custom install folder"],
 ];
 
 const Cmd = ({ label, value, id }) => (
@@ -36,15 +38,17 @@ export default function RmmGuide() {
     <div data-testid="rmm-guide" className="grid gap-8 rounded-2xl border border-slate-200 bg-slate-50 p-6 md:p-8 lg:grid-cols-2">
       <div className="space-y-6">
         <p className="text-base leading-relaxed text-slate-700">
-          Works with any RMM, Intune, PDQ or GPO. Runs as SYSTEM, installs per-machine to Program Files and
+          Works with any RMM, Intune, PDQ, SCCM or Group Policy - choose Setup.exe or the MSI. Runs as SYSTEM, installs per-machine to Program Files and
           auto-starts for every user. Python is bundled - no prerequisites.
         </p>
-        <Cmd id="install" label="Silent install" value={INSTALL} />
-        <Cmd id="uninstall" label="Silent uninstall" value={UNINSTALL} />
+        <Cmd id="install" label="Silent install (Setup.exe)" value={INSTALL} />
+        <Cmd id="uninstall" label="Silent uninstall (Setup.exe)" value={UNINSTALL} />
+        <Cmd id="msi" label="MSI install (Intune / Group Policy / SCCM)" value={MSI} />
+        <Cmd id="msi-uninstall" label="MSI uninstall" value={MSI_UNINSTALL} />
         <Cmd id="hash" label="Create a password hash (run once on any PC)" value={HASH} />
       </div>
       <div>
-        <p className="mb-3 text-sm font-semibold text-slate-500">Installer options</p>
+        <p className="mb-3 text-sm font-semibold text-slate-500">Installer options <span className="font-normal">(MSI: same names without the slash, e.g. NOAUTOSTART=1)</span></p>
         <ul className="divide-y divide-slate-200 rounded-xl border border-slate-200 bg-white">
           {OPTIONS.map(([flag, text]) => (
             <li key={flag} className="p-4">
@@ -54,8 +58,8 @@ export default function RmmGuide() {
           ))}
         </ul>
         <p className="mt-4 text-sm text-slate-500">
-          Change policy later without reinstalling: <code className="font-mono-gs">GuardianShield.exe --configure --allow …</code>.
-          Policy lives in C:\ProgramData\GuardianShield (admin-only).
+          Change policy later without reinstalling: <code className="font-mono-gs">SimpleScamProtection.exe --configure --allow …</code>.
+          Policy lives in C:\ProgramData\SimpleScamProtection (admin-only).
         </p>
       </div>
     </div>

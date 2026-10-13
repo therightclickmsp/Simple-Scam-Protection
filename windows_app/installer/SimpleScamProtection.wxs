@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  Simple Scam Protection MSI (WiX Toolset v5). For Intune, Group Policy, SCCM/MECM and RMM tools.
+  Build:  wix build -arch x64 -d Version=1.2.0 -d ExePath=dist\SimpleScamProtection.exe -o dist\SimpleScamProtection.msi installer\SimpleScamProtection.wxs
+  Silent install:   msiexec /i SimpleScamProtection.msi /qn /norestart
+  Properties:       ALLOW=screenconnect,teamviewer  PASSWORDHASH=pbkdf2_sha256$...  NOAUTOSTART=1  NOSITEBLOCK=1  NOPOPUPBLOCK=1
+  Silent uninstall: msiexec /x SimpleScamProtection.msi /qn /norestart   (or by product code)
+-->
+<Wix xmlns="http://wixtoolset.org/schemas/v4/wxs">
+  <Package Name="Simple Scam Protection"
+           Manufacturer="Simple Scam Protection"
+           Version="$(var.Version)"
+           UpgradeCode="6F1C2D3E-4A5B-4C6D-8E7F-9A0B1C2D3E4F"
+           Scope="perMachine"
+           Language="1033"
+           InstallerVersion="500">
+    <SummaryInformation Description="Simple Scam Protection - stops tech-support scams" />
+    <MajorUpgrade DowngradeErrorMessage="A newer version of Simple Scam Protection is already installed." />
+    <MediaTemplate EmbedCab="yes" />
+
+    <Property Id="ALLOW" Secure="yes" />
+    <Property Id="PASSWORDHASH" Secure="yes" Hidden="yes" />
+    <Property Id="NOAUTOSTART" Secure="yes" />
+    <Property Id="NOSITEBLOCK" Secure="yes" />
+    <Property Id="NOPOPUPBLOCK" Secure="yes" />
+    <Property Id="ARPNOMODIFY" Value="1" />
+    <Property Id="ARPNOREPAIR" Value="1" />
+    <Launch Condition="VersionNT64 AND VersionNT &gt;= 603" Message="Simple Scam Protection needs 64-bit Windows 10 or 11." />
+
+    <StandardDirectory Id="ProgramFiles64Folder">
+      <Directory Id="INSTALLFOLDER" Name="Simple Scam Protection">
+        <Component Id="MainExeComp" Guid="A3E5C7D9-1B2F-4A6C-8E0D-2F4B6D8A0C1E">
+          <File Id="MainExe" Source="$(var.ExePath)" Name="SimpleScamProtection.exe" KeyPath="yes" />
+        </Component>
+        <Component Id="AutostartComp" Guid="B4F6D8E0-2C3A-4B7D-9F1E-3A5C7E9B1D2F" Condition="NOT NOAUTOSTART">
+          <RegistryValue Root="HKLM" Key="Software\Microsoft\Windows\CurrentVersion\Run"
+                         Name="SimpleScamProtection" Type="string"
+                         Value="&quot;[#MainExe]&quot; --minimized" KeyPath="yes" />
+        </Component>
+      </Directory>
+    </StandardDirectory>
+
+    <StandardDirectory Id="ProgramMenuFolder">
+      <Component Id="ShortcutComp" Guid="C5A7E9F1-3D4B-4C8E-A02F-4B6D8F0A2E3C">
+        <Shortcut Id="StartMenuShortcut" Name="Simple Scam Protection"
+                  Description="Stops tech-support scams" Target="[#MainExe]" WorkingDirectory="INSTALLFOLDER" />
+        <RegistryValue Root="HKLM" Key="Software\SimpleScamProtection" Name="StartMenuShortcut"
+                       Type="integer" Value="1" KeyPath="yes" />
+      </Component>
+    </StandardDirectory>
+
+    <Feature Id="Main" Title="Simple Scam Protection">
+      <ComponentRef Id="MainExeComp" />
+      <ComponentRef Id="AutostartComp" />
+      <ComponentRef Id="ShortcutComp" />
+    </Feature>
+
+    <!-- Writes the machine policy (C:\ProgramData\SimpleScamProtection) and the hosts-file block, as SYSTEM. -->
+    <CustomAction Id="ConfigureApp" FileRef="MainExe"
+                  ExeCommand="--configure --msi &quot;ALLOW=[ALLOW]&quot; &quot;PASSWORDHASH=[PASSWORDHASH]&quot; &quot;NOSITEBLOCK=[NOSITEBLOCK]&quot; &quot;NOPOPUPBLOCK=[NOPOPUPBLOCK]&quot;"
+                  Execute="deferred" Impersonate="no" Return="check" HideTarget="yes" />
+    <!-- Interactive uninstall asks for the settings password (or a scam check). Silent /qn uninstall skips it. -->
+    <CustomAction Id="ConfirmUninstall" FileRef="MainExe" ExeCommand="--confirm-uninstall"
+                  Execute="immediate" Return="check" />
+    <CustomAction Id="StopApp" FileRef="MainExe" ExeCommand="--stop-running"
+                  Execute="deferred" Impersonate="no" Return="ignore" />
+    <CustomAction Id="CleanupApp" FileRef="MainExe" ExeCommand="--uninstall-cleanup"
+                  Execute="deferred" Impersonate="no" Return="ignore" />
+
+    <InstallExecuteSequence>
+      <Custom Action="ConfirmUninstall" Before="InstallInitialize"
+              Condition="REMOVE~=&quot;ALL&quot; AND NOT UPGRADINGPRODUCTCODE AND UILevel &gt; 2" />
+      <Custom Action="StopApp" Before="RemoveFiles" Condition="REMOVE~=&quot;ALL&quot;" />
+      <Custom Action="CleanupApp" After="StopApp" Condition="REMOVE~=&quot;ALL&quot; AND NOT UPGRADINGPRODUCTCODE" />
+      <Custom Action="ConfigureApp" After="InstallFiles" Condition="NOT REMOVE~=&quot;ALL&quot;" />
+    </InstallExecuteSequence>
+  </Package>
+</Wix>

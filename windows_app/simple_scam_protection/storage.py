@@ -20,7 +20,7 @@ POLICY_DEFAULT_KEYS = {"remote_block", "command_warn", "popup_block", "site_bloc
 
 def data_dir():
     base = os.environ.get("APPDATA") or str(Path.home() / ".config")
-    path = Path(os.environ.get("GUARDIAN_SHIELD_HOME") or Path(base) / "GuardianShield")
+    path = Path(os.environ.get("SIMPLE_SCAM_PROTECTION_HOME") or Path(base) / "SimpleScamProtection")
     path.mkdir(parents=True, exist_ok=True)
     return path
 
@@ -28,7 +28,7 @@ def data_dir():
 def policy_path():
     """Machine-wide policy written by the installer / RMM (admin-only writable in ProgramData)."""
     base = os.environ.get("ProgramData") or str(Path.home() / ".config")
-    return Path(os.environ.get("GUARDIAN_SHIELD_POLICY") or Path(base) / "GuardianShield" / "policy.json")
+    return Path(os.environ.get("SIMPLE_SCAM_PROTECTION_POLICY") or Path(base) / "SimpleScamProtection" / "policy.json")
 
 
 def read_json(path, default):

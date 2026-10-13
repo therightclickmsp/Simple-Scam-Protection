@@ -1,7 +1,7 @@
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 
 const FAQ = [
-  ["Is Guardian Shield really free?", "Yes. No subscription, no account, no ads. Everything runs on your PC."],
+  ["Is Simple Scam Protection really free?", "Yes. No subscription, no account, no ads. Everything runs on your PC."],
   ["Does it send my data anywhere?", "No. The activity log and settings stay in your Windows user folder. The link checker in the app works fully offline."],
   ["Can I install it on my parents' PC?", "That's exactly who it's for. Install it once and it starts with Windows, runs in the tray and needs no attention. Warnings are big and written in plain language."],
   ["What if I use TeamViewer or AnyDesk for work?", "Open Settings & Trusted, select the tool and type the confirmation phrase. That tool will then be allowed. The typed step is there so a scammer can't casually talk someone through it."],
@@ -9,6 +9,7 @@ const FAQ = [
   ["How does the fake pop-up closer work?", "It watches browser window titles for the tell-tale signs of fake 'Microsoft security alert' pages - like 'Your PC is locked' together with 'call support' or a toll-free number. It first closes just that tab; if the page fights back it closes the browser."],
   ["What does the settings password protect?", "Turning off any protection, trusting a remote tool, clearing the activity log, quitting the app and uninstalling it. After 5 wrong tries it locks for a minute. IT admins can set it during a silent install."],
   ["Can IT teams or MSPs deploy it with an RMM?", "Yes. The installer supports /VERYSILENT with options to pre-trust your own remote tool (so your RMM agent isn't blocked), set a password hash, and skip auto-start or site blocking. Silent uninstall is supported too."],
+  ["Is there an MSI for Intune or Group Policy?", "Yes. The build also produces SimpleScamProtection.msi (64-bit, per-machine). Use msiexec /i ... /qn with properties like ALLOW=screenconnect, NOAUTOSTART=1 or PASSWORDHASH=. Upgrades install over the old version automatically."],
   ["Is it an antivirus?", "No. It targets the specific tricks tech-support scammers use. Keep Windows Defender (or your antivirus) turned on as well."],
   ["Can it catch every remote tool or scam link?", "It recognises well-known tools by name and checks links with rules. Brand-new or renamed tools and brand-new scam sites may be missed - when in doubt, hang up and call a family member."],
 ];

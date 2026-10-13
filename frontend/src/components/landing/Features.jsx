@@ -20,7 +20,7 @@ export default function Features() {
           Built around how tech-support scams actually work.
         </h2>
         <p className="mt-4 max-w-2xl text-base text-slate-600 md:text-lg">
-          Almost every scam call ends the same way: "install this app so I can fix your computer." Guardian Shield breaks that step.
+          Almost every scam call ends the same way: "install this app so I can fix your computer." Simple Scam Protection breaks that step.
         </p>
         <div className="mt-12 grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
           {features.map(([Icon, title, text, cls, iconCls]) => (

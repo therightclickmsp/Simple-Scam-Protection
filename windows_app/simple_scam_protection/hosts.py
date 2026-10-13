@@ -6,7 +6,7 @@ import sys
 from .signatures import SCAM_DOMAINS
 
 HOSTS_PATH = os.path.join(os.environ.get("SystemRoot", r"C:\Windows"), "System32", "drivers", "etc", "hosts")
-START, END = "# >>> Guardian Shield scam-site block >>>", "# <<< Guardian Shield scam-site block <<<"
+START, END = "# >>> Simple Scam Protection scam-site block >>>", "# <<< Simple Scam Protection scam-site block <<<"
 
 
 def _strip_block(text):
@@ -65,12 +65,12 @@ def is_admin():
 
 
 def run_elevated(flag):
-    """Relaunch Guardian Shield as administrator just to edit the hosts file."""
+    """Relaunch Simple Scam Protection as administrator just to edit the hosts file."""
     import ctypes
     if getattr(sys, "frozen", False):
         exe, params = sys.executable, flag
     else:
-        exe, params = sys.executable, f'-m guardian_shield {flag}'
+        exe, params = sys.executable, f'-m simple_scam_protection {flag}'
     rc = ctypes.windll.shell32.ShellExecuteW(None, "runas", exe, params, os.getcwd(), 0)
     return rc > 32
 

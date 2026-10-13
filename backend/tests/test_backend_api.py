@@ -1,4 +1,4 @@
-"""Backend API tests for Guardian Shield."""
+"""Backend API tests for Simple Scam Protection."""
 import io
 import os
 import zipfile
@@ -24,7 +24,7 @@ def test_root(session):
     r = session.get(f"{API}/")
     assert r.status_code == 200
     j = r.json()
-    assert "version" in j and "Guardian Shield" in j["message"]
+    assert "version" in j and "Simple Scam Protection" in j["message"]
 
 
 # --- /api/check verdicts ---
@@ -100,8 +100,8 @@ def test_download_zip_contents(session):
     assert "attachment" in r.headers.get("content-disposition", "")
     z = zipfile.ZipFile(io.BytesIO(r.content))
     names = z.namelist()
-    assert any(n.startswith("GuardianShield/") for n in names)
-    assert any("guardian_shield" in n for n in names)
+    assert any(n.startswith("SimpleScamProtection/") for n in names)
+    assert any("simple_scam_protection" in n for n in names)
     assert any(n.endswith("linkcheck.py") for n in names)
     # No pycache
     assert not any("__pycache__" in n for n in names)

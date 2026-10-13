@@ -19,9 +19,9 @@ APP_DIR = ROOT_DIR.parent / "windows_app"
 load_dotenv(ROOT_DIR / '.env')
 sys.path.insert(0, str(APP_DIR))
 
-from guardian_shield import __version__  # noqa: E402
-from guardian_shield.linkcheck import check  # noqa: E402
-from guardian_shield.signatures import REMOTE_TOOLS, SCAM_COMMANDS, SCAM_DOMAINS  # noqa: E402
+from simple_scam_protection import __version__  # noqa: E402
+from simple_scam_protection.linkcheck import check  # noqa: E402
+from simple_scam_protection.signatures import REMOTE_TOOLS, SCAM_COMMANDS, SCAM_DOMAINS  # noqa: E402
 
 client = AsyncIOMotorClient(os.environ['MONGO_URL'])
 db = client[os.environ['DB_NAME']]
@@ -65,7 +65,7 @@ async def bump(field: str):
 
 @api_router.get("/")
 async def root():
-    return {"message": "Guardian Shield API", "version": __version__}
+    return {"message": "Simple Scam Protection API", "version": __version__}
 
 
 @api_router.post("/check", response_model=CheckResult)
@@ -92,14 +92,14 @@ def build_zip() -> bytes:
         for path in APP_DIR.rglob("*"):
             rel = path.relative_to(APP_DIR)
             if path.is_file() and not any(p in ("__pycache__", ".pytest_cache", ".build", "dist", "build") for p in rel.parts):
-                z.write(path, Path("GuardianShield") / rel)
+                z.write(path, Path("SimpleScamProtection") / rel)
     return buf.getvalue()
 
 
 @api_router.get("/download")
 async def download():
     await bump("downloads")
-    name = f"GuardianShield-{__version__}-windows.zip"
+    name = f"SimpleScamProtection-{__version__}-windows.zip"
     data = await asyncio.to_thread(build_zip)
     return StreamingResponse(io.BytesIO(data), media_type="application/zip",
                              headers={"Content-Disposition": f'attachment; filename="{name}"'})

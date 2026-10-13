@@ -1,14 +1,14 @@
-"""Start Guardian Shield automatically when Windows starts."""
+"""Start Simple Scam Protection automatically when Windows starts."""
 import sys
 
 RUN_KEY = r"Software\Microsoft\Windows\CurrentVersion\Run"
-VALUE = "GuardianShield"
+VALUE = "SimpleScamProtection"
 
 
 def _command():
     if getattr(sys, "frozen", False):
         return f'"{sys.executable}" --minimized'
-    return f'"{sys.executable.replace("python.exe", "pythonw.exe")}" -m guardian_shield --minimized'
+    return f'"{sys.executable.replace("python.exe", "pythonw.exe")}" -m simple_scam_protection --minimized'
 
 
 def machine_managed():

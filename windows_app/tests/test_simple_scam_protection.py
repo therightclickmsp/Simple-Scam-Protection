@@ -3,11 +3,11 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 
-from guardian_shield import hosts, scanner  # noqa: E402
-from guardian_shield.linkcheck import check, extract_urls  # noqa: E402
-from guardian_shield.monitor import Classifier  # noqa: E402
-from guardian_shield.signatures import match_remote_tool, match_scam_command  # noqa: E402
-from guardian_shield.storage import Store  # noqa: E402
+from simple_scam_protection import hosts, scanner  # noqa: E402
+from simple_scam_protection.linkcheck import check, extract_urls  # noqa: E402
+from simple_scam_protection.monitor import Classifier  # noqa: E402
+from simple_scam_protection.signatures import match_remote_tool, match_scam_command  # noqa: E402
+from simple_scam_protection.storage import Store  # noqa: E402
 
 
 def test_official_sites_safe():

@@ -1,4 +1,4 @@
-"""Guardian Shield desktop window, warnings and tray icon (tkinter + pystray)."""
+"""Simple Scam Protection desktop window, warnings and tray icon (tkinter + pystray)."""
 import queue
 import sys
 import threading
@@ -24,7 +24,7 @@ def font(size=13, weight="normal"):
     return (FONT, size, weight)
 
 
-class GuardianApp:
+class ScamProtectionApp:
     def __init__(self, start_minimized=False):
         self.store = Store()
         self.guard = PasswordGuard(self.store)
@@ -63,7 +63,7 @@ class GuardianApp:
         side = tk.Frame(self.root, bg=INK, width=230)
         side.pack(side="left", fill="y")
         side.pack_propagate(False)
-        tk.Label(side, text="Guardian\nShield", bg=INK, fg="white", font=font(20, "bold"), justify="left").pack(
+        tk.Label(side, text="Simple Scam\nProtection", bg=INK, fg="white", font=font(18, "bold"), justify="left").pack(
             anchor="w", padx=24, pady=(28, 30))
         self.body = tk.Frame(self.root, bg=BG)
         self.body.pack(side="left", fill="both", expand=True)
@@ -105,7 +105,7 @@ class GuardianApp:
         if not self.guard.is_set():
             return True
         self.show()
-        return PasswordDialog(self.root, self.guard, f"Enter the Guardian Shield password to {action}.").ok
+        return PasswordDialog(self.root, self.guard, f"Enter the Simple Scam Protection password to {action}.").ok
 
     def quit(self):
         self.monitor.stop()
@@ -125,10 +125,10 @@ class GuardianApp:
         d.polygon([(32, 4), (58, 14), (54, 42), (32, 60), (10, 42), (6, 14)], fill=GREEN)
         d.line([(20, 32), (29, 41), (45, 23)], fill="white", width=6)
         menu = pystray.Menu(
-            pystray.MenuItem("Open Guardian Shield", lambda: self.events.put(("show", None)), default=True),
+            pystray.MenuItem("Open Simple Scam Protection", lambda: self.events.put(("show", None)), default=True),
             pystray.MenuItem("Scan for remote-access tools", lambda: self.events.put(("scan", None))),
             pystray.MenuItem("Quit", lambda: self.events.put(("quit", None))))
-        self.tray = pystray.Icon("GuardianShield", img, f"{APP_NAME} - Protected", menu)
+        self.tray = pystray.Icon("SimpleScamProtection", img, f"{APP_NAME} - Protected", menu)
         self.tray.run_detached()
 
     def notify(self, title, msg):
@@ -149,7 +149,7 @@ class GuardianApp:
                     self.show()
                     self.show_page("status")
                     self.pages["status"].scan()
-                elif kind == "quit" and self.require_password("close Guardian Shield"):
+                elif kind == "quit" and self.require_password("close Simple Scam Protection"):
                     self.quit()
                     return
                 elif kind == "monitor":
@@ -163,7 +163,7 @@ class GuardianApp:
             t = d["tool"]
             self.store.add_event("blocked", f"Blocked {t['name']}", "A remote-access tool started and was closed.")
             WarningScreen(self.root, "Someone may be trying to control your computer",
-                          f"{t['name']} just tried to start, and Guardian Shield closed it.\n\n"
+                          f"{t['name']} just tried to start, and Simple Scam Protection closed it.\n\n"
                           "If a caller, pop-up or message asked you to install or open it, it is a SCAM.\n"
                           "Hang up the phone now. Microsoft, Apple, your bank and the government never call "
                           "you to fix your computer.")
@@ -296,7 +296,7 @@ class StatusPage(Page):
             w.configure(bg=bg)
         self.banner_title.configure(text="✔  You are Protected" if ok else "✖  Protection is partly OFF",
                                     fg=GREEN if ok else RED)
-        self.banner_sub.configure(text="Guardian Shield is watching for remote-access tools and scammer tricks."
+        self.banner_sub.configure(text="Simple Scam Protection is watching for remote-access tools and scammer tricks."
                                   if ok else "Turn the protections below back on to stay safe.")
         for k, v in self.vars.items():
             v.set(self.app.store.settings[k])
@@ -361,7 +361,7 @@ class StatusPage(Page):
 
 class LinkPage(Page):
     def build(self):
-        self.title("Check a link or message", "Paste a web link, text message or email. Guardian Shield checks it "
+        self.title("Check a link or message", "Paste a web link, text message or email. Simple Scam Protection checks it "
                                               "for scam warning signs. Nothing is sent anywhere.")
         c = self.card()
         c.pack(fill="x")
@@ -400,7 +400,7 @@ class LinkPage(Page):
 
 class LogPage(Page):
     def build(self):
-        self.title("Activity Log", "Everything Guardian Shield blocked, warned about or checked. Stored only on this PC.")
+        self.title("Activity Log", "Everything Simple Scam Protection blocked, warned about or checked. Stored only on this PC.")
         self.tree = ttk.Treeview(self, columns=("time", "kind", "title", "detail"), show="headings")
         for col, w in [("time", 160), ("kind", 90), ("title", 220), ("detail", 360)]:
             self.tree.heading(col, text=col.capitalize())
@@ -434,7 +434,7 @@ class SettingsPage(Page):
         big_button(row, "Stop trusting", self.untrust, INK).pack(side="left", padx=10)
         self.auto = tk.BooleanVar(value=self.app.store.settings["autostart"])
         managed = autostart.machine_managed()
-        tk.Checkbutton(self, text="Start Guardian Shield when Windows starts" + (" (set by installer)" if managed else ""),
+        tk.Checkbutton(self, text="Start Simple Scam Protection when Windows starts" + (" (set by installer)" if managed else ""),
                        variable=self.auto, bg=BG, font=font(12), command=self.set_auto,
                        state="disabled" if managed else "normal").pack(anchor="w", pady=(10, 0))
         pw = self.card()
@@ -456,10 +456,10 @@ class SettingsPage(Page):
         g = self.app.guard
         if g.managed():
             self.pw_status.configure(text="A password was set by your IT administrator. It is needed to turn off "
-                                          "protection, trust a tool, clear the log or close Guardian Shield.")
+                                          "protection, trust a tool, clear the log or close Simple Scam Protection.")
         elif g.is_set():
             self.pw_status.configure(text="ON - a password is needed to turn off protection, trust a tool, "
-                                          "clear the log or close Guardian Shield.")
+                                          "clear the log or close Simple Scam Protection.")
             big_button(self.pw_row, "Change password", self.set_password, INK).pack(side="left")
             big_button(self.pw_row, "Remove password", self.remove_password, RED).pack(side="left", padx=10)
         else:
@@ -617,4 +617,4 @@ class SetPasswordDialog(tk.Toplevel):
 
 
 if __name__ == "__main__":
-    GuardianApp("--minimized" in sys.argv).run()
+    ScamProtectionApp("--minimized" in sys.argv).run()

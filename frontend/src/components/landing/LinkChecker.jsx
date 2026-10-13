@@ -21,7 +21,7 @@ const STYLES = {
 const Verdict = ({ result }) => {
   const s = STYLES[result.verdict];
   const copy = () => {
-    navigator.clipboard?.writeText(`Guardian Shield says: ${s.label.toUpperCase()}\n- ${result.reasons.join("\n- ")}`);
+    navigator.clipboard?.writeText(`Simple Scam Protection says: ${s.label.toUpperCase()}\n- ${result.reasons.join("\n- ")}`);
     toast.success("Result copied - share it with family");
   };
   return (
