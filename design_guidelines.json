@@ -1,0 +1,154 @@
+{
+  "project_identity": {
+    "name": "Guardian Shield",
+    "concept": "Free Windows Anti-Tech-Support-Scam Desktop App & Live Web Shield",
+    "archetype": "ORGANIC & TRUSTWORTHY SECURITY (Organic & Earthy + Swiss Precision)",
+    "target_audience": "Everyday Windows users, non-technical older adults, and concerned family caretakers",
+    "emotional_tone": "Reassuring, authoritative, ultra-readable, friction-free, non-intimidating"
+  },
+  "typography": {
+    "heading_font": "Plus Jakarta Sans, Cabinet Grotesk, sans-serif",
+    "body_font": "DM Sans, system-ui, sans-serif",
+    "mono_font": "JetBrains Mono, Source Code Pro, monospace",
+    "scale": {
+      "h1_hero": "text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight leading-none",
+      "h2_section": "text-2xl sm:text-3xl lg:text-4xl font-bold tracking-tight",
+      "h3_card": "text-xl sm:text-2xl font-semibold tracking-normal",
+      "subtitle": "text-lg sm:text-xl font-normal leading-relaxed text-slate-600 dark:text-slate-300",
+      "body": "text-base sm:text-lg leading-relaxed text-slate-700 dark:text-slate-200",
+      "caption_label": "text-xs sm:text-sm font-semibold uppercase tracking-widest text-slate-500"
+    },
+    "rules": "Avoid generic Inter for titles. Use bold weight for headings with tight letter spacing (-0.02em). Maintain 1.6+ line-height for body text for optimal readability by senior users."
+  },
+  "colors": {
+    "theme_preference": "Light theme default with high contrast support & seamless dark mode toggle",
+    "palette": {
+      "bg_primary": "#F8FAFC",
+      "bg_card": "#FFFFFF",
+      "bg_dark": "#0F172A",
+      "bg_dark_card": "#1E293B",
+      "shield_emerald": "#059669",
+      "shield_emerald_light": "#D1FAE5",
+      "security_blue": "#2563EB",
+      "security_blue_light": "#DBEAFE",
+      "danger_red": "#DC2626",
+      "danger_red_light": "#FEE2E2",
+      "warning_amber": "#D97706",
+      "warning_amber_light": "#FEF3C7",
+      "text_main": "#0F172A",
+      "text_muted": "#475569",
+      "border": "#E2E8F0"
+    },
+    "contrast_rules": "Text against light background must exceed 5:1 contrast ratio. Primary action buttons must feature bold white text on high-contrast emerald or deep blue. Warning banners use distinct color coding (Green = Safe, Amber = Caution, Red = High Risk)."
+  },
+  "layout_and_spacing": {
+    "container": "max-w-7xl mx-auto px-4 sm:px-6 lg:px-8",
+    "section_padding": "py-16 md:py-24",
+    "card_padding": "p-6 md:p-8",
+    "border_radius": "rounded-2xl for cards and buttons, rounded-xl for input fields",
+    "bento_grid": "grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8"
+  },
+  "navigation_and_header": {
+    "style": "Sticky top-0 z-50 backdrop-blur-xl bg-white/85 dark:bg-slate-900/85 border-b border-slate-200 dark:border-slate-800",
+    "elements": [
+      "Brand logo with animated Guardian Shield icon",
+      "Nav Links: Live Checker, Features, How It Works, FAQ",
+      "Theme toggle switch (Sun/Moon)",
+      "Primary CTA button: Download Guardian Shield"
+    ]
+  },
+  "key_sections": {
+    "hero": {
+      "headline": "Stop Tech Support Scammers Before They Take Control",
+      "subheadline": "Guardian Shield blocks suspicious remote access tools (AnyDesk, TeamViewer), alerts on scam command execution, and verifies dangerous links in real time.",
+      "cta": {
+        "primary": "Download Free for Windows (v1.2)",
+        "secondary": "Test a Link Online"
+      },
+      "trust_badge": "100% Free • Open Source Python • No Registration Required"
+    },
+    "live_link_checker": {
+      "title": "Instant Scam Link & Message Analyzer",
+      "description": "Paste any suspicious SMS, email, or URL below to verify if it is safe.",
+      "placeholder": "e.g., 'Your PC has 5 viruses! Call Microsoft support at 1-800-555-0199 or click http://support-microsoft-alert-fix.cc'",
+      "verdict_card_states": [
+        "Safe (Green): verified legitimate URL structure, no scam triggers",
+        "Suspicious (Amber): impersonation indicators, newly registered domain, urgent call-to-action language",
+        "Dangerous (Red): known malware domain, remote-access payload link, fake toll-free scam number"
+      ]
+    },
+    "features_grid": [
+      {
+        "title": "Remote Access Blocker",
+        "description": "Detects unauthorized background launches of AnyDesk, TeamViewer, RustDesk, and UltraViewer."
+      },
+      {
+        "title": "Fake Alert & Command Shield",
+        "description": "Monitors suspicious PowerShell, CMD, or browser full-screen scam tricks before scammers gain access."
+      },
+      {
+        "title": "Real-Time System Tray Protection",
+        "description": "Runs quietly in your Windows tray with clear desktop pop-up alerts in plain English."
+      },
+      {
+        "title": "Live Link & Phone Number Checker",
+        "description": "Analyzes suspicious links and fake toll-free numbers using heuristic scam databases."
+      },
+      {
+        "title": "Detailed Local Activity Log",
+        "description": "Keep complete records of intercepted attempts on your PC without sharing private data."
+      },
+      {
+        "title": "Family Guard Mode",
+        "description": "Allows caretakers to inspect logs and set one-click blocking rules for non-technical family members."
+      }
+    ],
+    "download_and_build_guide": {
+      "title": "Download & Simple Installation",
+      "download_contents": [
+        "GuardianShield_v1.2.zip containing source script (guardian_shield.py)",
+        "Build executable script (build_exe.bat)",
+        "Pre-configured rule definitions (rules.json)"
+      ],
+      "smartscreen_notice": "Note: Because Guardian Shield is free and open-source, Windows SmartScreen may show 'Unknown Publisher'. Click 'More info' -> 'Run anyway' during first launch."
+    },
+    "faq": {
+      "accordion_items": [
+        "Is Guardian Shield completely free?",
+        "Why does Windows SmartScreen show a warning when building/running?",
+        "Can I install this on my parents' PC?",
+        "Does Guardian Shield collect or upload my personal data?",
+        "What remote control tools does Guardian Shield block?"
+      ]
+    }
+  },
+  "interactive_components": {
+    "link_checker": "Must include instant rule-based parsing with visual badges, category tags, clear explanations, and copyable share results.",
+    "building_simulator": "Step-by-step interactive tabs for Installation (ZIP extract -> run build script -> system tray launch).",
+    "scam_alert_preview": "Interactive preview tool showing how a pop-up alert looks when a scammer tries to launch AnyDesk or fake CMD commands."
+  },
+  "image_urls": {
+    "hero_security": "https://images.unsplash.com/photo-1614064548237-096f735f344f?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjAzNzl8MHwxfHNlYXJjaHwyfHxjeWJlciUyMHNlY3VyaXR5JTIwc2hpZWxkJTIwZmFtaWx5fGVufDB8fHx8MTc5MTcwNzEzN3ww&ixlib=rb-4.1.0&q=85",
+    "shield_desk": "https://images.unsplash.com/photo-1584433144859-1fc3ab64a957?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjAzNzl8MHwxfHNlYXJjaHwzfHxjeWJlciUyMHNlY3VyaXR5JTIwc2hpZWxkJTIwZmFtaWx5fGVufDB8fHx8MTc5MTcwNzEzN3ww&ixlib=rb-4.1.0&q=85",
+    "keyboard_lock": "https://images.unsplash.com/photo-1614064641938-3bbee52942c7?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjAzNzl8MHwxfHNlYXJjaHxfHxjeWJlciUyMHNlY3VyaXR5JTIwc2hpZWxkJTIwZmFtaWx5fGVufDB8fHx8MTc5MTcwNzEzN3ww&ixlib=rb-4.1.0&q=85"
+  },
+  "data_testid_convention": {
+    "rule": "All interactive buttons, inputs, links, tabs, and output cards MUST contain clear kebab-case data-testid attributes.",
+    "examples": [
+      "data-testid='download-hero-button'",
+      "data-testid='link-checker-input'",
+      "data-testid='link-checker-submit-button'",
+      "data-testid='link-checker-verdict-card'",
+      "data-testid='faq-accordion-item'",
+      "data-testid='theme-toggle-button'"
+    ]
+  },
+  "instructions_to_main_agent": [
+    "Implement the landing page in React with Tailwind CSS, supporting both Light and Dark modes seamlessly.",
+    "Use Phosphor or Lucide icons for rich security indicators (ShieldCheck, AlertTriangle, Lock, Terminal, Monitor, UserCheck).",
+    "Ensure the Live Link Checker has a comprehensive set of predefined sample scam messages and URLs so users can quickly test one-click presets.",
+    "Provide downloadable mock ZIP contents (or client-side text generation/download blob) for 'GuardianShield_v1.2.zip'.",
+    "Include an interactive alert simulator allowing users to see how the system tray notification responds to scam attempts.",
+    "Strictly follow contrast and large readable typography standards for accessibility."
+  ]
+}
