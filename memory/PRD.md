@@ -28,6 +28,7 @@
 - Static website in /app/static_site (plain HTML/CSS/JS for www.simplescamprotection.com): client-side link checker (assets/linkcheck.js, rules exported from the app, 30/30 parity), downloads -> GitHub releases (trcmsp/simple-scam-protection), Buy me a coffee nav/mobile/footer links, robots/sitemap/404/.htaccess. Rebuild: website_build/build_site.sh. Preview: /site/index.html
 - App v1.3.0: Buy me a coffee button in sidebar; scrollable remote-tools results; Quick Assist trusted by default (+migration); single full-screen warning with 20s dedupe (fixes multi-click "I understand")
 - Workflows publish a GitHub Release on tags v*
+- Iteration 5: workflows also auto-publish release v<app version> on every push to the default branch (so "Save to GitHub" alone makes downloads live); version read from __init__.py; tests use full os.environ (Windows CI). Buy me a coffee added to React preview site header (desktop + mobile) and footer.
 
 ## Backlog
 - P1: browser extension; auto-updating lists; code signing

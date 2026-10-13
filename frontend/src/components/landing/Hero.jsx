@@ -14,7 +14,7 @@ const AppMock = () => (
       <span className="h-3 w-3 rounded-full bg-slate-300" />
       <span className="h-3 w-3 rounded-full bg-slate-300" />
       <span className="h-3 w-3 rounded-full bg-slate-300" />
-      <span className="ml-3 text-xs font-semibold text-slate-500">Simple Scam Protection 1.2</span>
+      <span className="ml-3 text-xs font-semibold text-slate-500">Simple Scam Protection 1.3</span>
     </div>
     <div className="grid grid-cols-[120px_1fr] sm:grid-cols-[150px_1fr]">
       <div className="space-y-1 bg-slate-900 p-4 text-sm">

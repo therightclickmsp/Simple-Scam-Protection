@@ -1,4 +1,6 @@
 name: Build Simple Scam Protection (Windows)
+# Every push builds the app. A push to the default branch (e.g. "Save to GitHub") also publishes/updates the
+# GitHub release v<version> (version from simple_scam_protection/__init__.py), which the website's download buttons use.
 on:
   push:
     tags: ["v*"]
@@ -14,6 +16,12 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: "3.12"
+      - name: Read app version
+        id: ver
+        shell: pwsh
+        run: |
+          $v = (Select-String -Path simple_scam_protection\__init__.py -Pattern '__version__ = "(.+)"').Matches[0].Groups[1].Value
+          "version=$v" >> $env:GITHUB_OUTPUT
       - run: pip install -r requirements.txt pyinstaller pytest
       - run: python -m pytest tests -q
       - run: pyinstaller --noconfirm --onefile --windowed --name SimpleScamProtection --hidden-import pystray._win32 run_simple_scam_protection.py
@@ -22,12 +30,12 @@ jobs:
         run: |
           $iscc = "${env:ProgramFiles(x86)}\Inno Setup 6\ISCC.exe"
           if (-not (Test-Path $iscc)) { choco install innosetup -y --no-progress }
-          & $iscc /DAppVersion=1.3.0 installer\SimpleScamProtection.iss
+          & $iscc /DAppVersion=${{ steps.ver.outputs.version }} installer\SimpleScamProtection.iss
       - name: Build MSI
         shell: pwsh
         run: |
           dotnet tool install --global wix --version 5.0.2
-          wix build -arch x64 -d Version=1.3.0 -d ExePath=dist\SimpleScamProtection.exe -o dist\SimpleScamProtection.msi installer\SimpleScamProtection.wxs
+          wix build -arch x64 -d Version=${{ steps.ver.outputs.version }} -d ExePath=dist\SimpleScamProtection.exe -o dist\SimpleScamProtection.msi installer\SimpleScamProtection.wxs
       - uses: actions/upload-artifact@v4
         with:
           name: SimpleScamProtection-windows
@@ -35,10 +43,17 @@ jobs:
             dist/SimpleScamProtectionSetup.exe
             dist/SimpleScamProtection.msi
             dist/SimpleScamProtection.exe
-      - name: Publish GitHub release (when a tag like v1.3.0 is pushed)
-        if: startsWith(github.ref, 'refs/tags/v')
+      - name: Publish GitHub release
+        if: startsWith(github.ref, 'refs/tags/v') || github.ref == format('refs/heads/{0}', github.event.repository.default_branch)
         uses: softprops/action-gh-release@v2
         with:
+          tag_name: ${{ startsWith(github.ref, 'refs/tags/v') && github.ref_name || format('v{0}', steps.ver.outputs.version) }}
+          name: Simple Scam Protection ${{ steps.ver.outputs.version }}
+          target_commitish: ${{ github.sha }}
+          make_latest: "true"
+          body: |
+            Windows installer (SimpleScamProtectionSetup.exe), MSI for Intune / Group Policy, and a portable .exe.
+            Not code-signed yet: if Windows says "Windows protected your PC", click More info > Run anyway.
           files: |
             dist/SimpleScamProtectionSetup.exe
             dist/SimpleScamProtection.msi

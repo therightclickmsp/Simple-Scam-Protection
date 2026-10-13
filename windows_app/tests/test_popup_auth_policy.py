@@ -1,3 +1,4 @@
+import os
 import json
 import subprocess
 import sys
@@ -86,8 +87,7 @@ def test_policy_overrides(tmp_path):
 
 
 def test_configure_cli(tmp_path):
-    env = {"SIMPLE_SCAM_PROTECTION_POLICY": str(tmp_path / "policy.json"), "SIMPLE_SCAM_PROTECTION_HOME": str(tmp_path / "u"),
-           "PATH": "/usr/bin:/bin"}
+    env = {**os.environ, "SIMPLE_SCAM_PROTECTION_POLICY": str(tmp_path / "policy.json"), "SIMPLE_SCAM_PROTECTION_HOME": str(tmp_path / "u")}
     h = make_hash("it-admin-secret!")
     run = lambda *a: subprocess.run([sys.executable, "-m", "simple_scam_protection", *a], cwd=ROOT, env=env,
                                     capture_output=True, text=True)
@@ -103,8 +103,7 @@ def test_configure_cli(tmp_path):
 
 def test_configure_from_msi_properties(tmp_path):
     pol_dir = tmp_path / "pd"
-    env = {"SIMPLE_SCAM_PROTECTION_POLICY": str(pol_dir / "policy.json"), "SIMPLE_SCAM_PROTECTION_HOME": str(tmp_path / "u"),
-           "PATH": "/usr/bin:/bin"}
+    env = {**os.environ, "SIMPLE_SCAM_PROTECTION_POLICY": str(pol_dir / "policy.json"), "SIMPLE_SCAM_PROTECTION_HOME": str(tmp_path / "u")}
     h = make_hash("it-admin-secret!")
     run = lambda *a: subprocess.run([sys.executable, "-m", "simple_scam_protection", *a], cwd=ROOT, env=env,
                                     capture_output=True, text=True)
