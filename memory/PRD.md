@@ -11,6 +11,13 @@
 ## Implemented (2026-06)
 - All Phase 1 MVP items. Windows app logic unit-tested on Linux; GUI/tray/winreg NOT runnable here (needs real Windows).
 
+## Iteration 2 (2026-06)
+- Fake pop-up closer (popup.py): browser window-title scam detection, Ctrl+W tab close, fallback kill browser
+- Settings password (auth.py): PBKDF2-SHA256 600k, lockout 5 tries/60s; gates protection-off, trust, clear log, quit, uninstall
+- Machine policy %ProgramData%\GuardianShield\policy.json via `--configure` (password hash, allowlist, defaults)
+- Inno Setup installer (Python bundled via PyInstaller), silent switches /VERYSILENT /NOAUTOSTART /NOSITEBLOCK /NOPOPUPBLOCK /ALLOW= /PASSWORDHASH=; build_exe.bat auto-downloads private Python + Inno Setup
+- Website: new feature cards, pop-up warning simulator, IT/RMM install tab, FAQ
+
 ## Backlog
-- P1: fake virus pop-up/browser lock detection; browser extension; auto-updating lists
+- P1: browser extension; auto-updating lists; MSI package
 - P2: signed installer + auto-update; password-protected settings; multi-language; macOS
