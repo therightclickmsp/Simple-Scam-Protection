@@ -24,6 +24,11 @@
 - build_exe.bat builds Setup.exe + MSI (private .NET SDK + WiX 5); GitHub workflow builds MSI too
 - Website: MSI commands in IT/RMM tab, MSI FAQ, mobile fixes
 
+## Iteration 4 (2026-06)
+- Static website in /app/static_site (plain HTML/CSS/JS for www.simplescamprotection.com): client-side link checker (assets/linkcheck.js, rules exported from the app, 30/30 parity), downloads -> GitHub releases (trcmsp/simple-scam-protection), Buy me a coffee nav/mobile/footer links, robots/sitemap/404/.htaccess. Rebuild: website_build/build_site.sh. Preview: /site/index.html
+- App v1.3.0: Buy me a coffee button in sidebar; scrollable remote-tools results; Quick Assist trusted by default (+migration); single full-screen warning with 20s dedupe (fixes multi-click "I understand")
+- Workflows publish a GitHub Release on tags v*
+
 ## Backlog
 - P1: browser extension; auto-updating lists; code signing
 - P2: signed installer + auto-update; password-protected settings; multi-language; macOS
